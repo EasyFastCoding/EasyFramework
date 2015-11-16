@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.comment.utils;
+package com.coding.android.easyfastcoding.common.utils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,6 +13,7 @@ import java.util.Locale;
  * @描述： 关于日期的工具类
  */
 public class DateUtil {
+
     /**
      * 格式：yyyyMMddHHmmss
      */

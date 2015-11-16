@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.comment.utils;
+package com.coding.android.easyfastcoding.common.utils;
 
 import java.io.Closeable;
 import java.io.IOException;

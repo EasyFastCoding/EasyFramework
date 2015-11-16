@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.comment.utils;
+package com.coding.android.easyfastcoding.common.utils;
 
 import android.text.TextUtils;
 import android.util.Log;
