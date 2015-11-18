@@ -32,6 +32,7 @@ public class BaseApplication extends Application
 		mMainThreadId = android.os.Process.myTid();
 
 		mLooper = getMainLooper();
+
 		mMainHandler = new Handler();
 
 	}

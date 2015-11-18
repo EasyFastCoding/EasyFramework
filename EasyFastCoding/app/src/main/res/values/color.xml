@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--覆盖颜色-->
+    <color name="bg_overlay">#60000000</color>
+    <color name="bg_overlay_black">#95000000</color>
+    <!--窗口背景颜色-->
+    <color name="bg_progress_default_color">@android:color/white</color>
+    <!--标题颜色-->
+    <color name="text_progress_default_msg_color">#000000</color>
+    <!-- 圆形进度条总进度 -->
+    <color name="round_progress_default_color">#e5e5e5</color>
+    <!-- 圆形进度条进度 -->
+    <color name="round_rate_of_progress_color">@android:color/black</color>
+</resources>
