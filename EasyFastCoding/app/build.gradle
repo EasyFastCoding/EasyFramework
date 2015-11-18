@@ -33,4 +33,11 @@ dependencies {
     //官方支持库
     compile "com.android.support:appcompat-v7:${SUPPORT_PACKAGE_VERSION}"
     compile "com.android.support:recyclerview-v7:${SUPPORT_PACKAGE_VERSION}"
+    
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.mcxiaoke.volley:library:1.0.+'
+
 }
