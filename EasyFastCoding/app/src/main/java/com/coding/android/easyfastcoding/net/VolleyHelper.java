@@ -29,10 +29,10 @@ import java.util.Map;
  * Created by 杨强彪 on 2015/11/11.
  *
  * @描述： volley 网络请求帮助类
- * <p>
- * <p>
- * <p>
- * <p>
+ * <p/>
+ * <p/>
+ * <p/>
+ * <p/>
  * //网络请求的取消   结合生命周期联动使用
  * gsonRequest.cancel();//单个请求的取消
  * 请求队列设置tag
@@ -114,6 +114,7 @@ public class VolleyHelper {
         return mImageCache;
     }
     //  --------------------------------------  四大网络请求 -----------------------------begin
+
     /**
      * jsonArray的请求
      * 返回一个jsonArray
@@ -122,6 +123,7 @@ public class VolleyHelper {
             listener) {
         jsonArrayRequest(url, request, listener);
     }
+
     /**
      * jsonObject的请求
      * 建议 ：直接用 gsonBeanReqest_net 更合适，省去后面解析处理
@@ -157,9 +159,8 @@ public class VolleyHelper {
 
         Gson gson = new Gson();
         final String text = gson.toJson(request);
-        //开启日志
-        LogUtils.i(TAG + "=url", url);
-        LogUtils.i(TAG + "=request", text);
+        LogUtils.i(TAG, "url = " + url);
+        LogUtils.i(TAG, "request =" + text);
 
         // jsonArrayRequest构造参数可以传requestBody(String类型)进去 ，不传默认请求体是null
         JsonArrayRequest jar = new JsonArrayRequest(Request.Method.POST, url,
@@ -350,6 +351,20 @@ public class VolleyHelper {
         //添加到请求队列
         addToRequestQueue(sr);
     }
+
+    /**
+     * 取消所有带有tag标记的request
+     * 如果传入null取消请求队列中所有请求
+     * 一般建议写在，Activity / Fragment 的 onDestory 方法中
+     */
+    public void cancelAllRequest(Object tag) {
+        mRequestQueue.cancelAll(tag);
+    }
+    /** 取消某个请求*/
+    public void cancelRequest(Request request ) {
+        request.cancel();
+    }
+
 
     /**
      * 通用监听事件

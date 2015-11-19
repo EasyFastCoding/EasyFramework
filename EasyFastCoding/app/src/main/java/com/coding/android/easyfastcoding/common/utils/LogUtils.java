@@ -3,6 +3,8 @@ package com.coding.android.easyfastcoding.common.utils;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
+
 import java.util.List;
 
 /**
@@ -11,8 +13,10 @@ import java.util.List;
  * @描述： Log日志管理类
  */
 public class LogUtils {
+    /** 是否允许输出log */
+    private static int mDebuggable = CommonConfig.DEBUGLEVEL;
     /** 日志输出时的TAG */
-    private static String mTag = "EasyFastCoding";
+    private static String mTag = UIUtils.getPackageName();
     /** 日志输出级别NONE */
     public static final int LEVEL_OFF = 0;
     /** 日志输出级别NONE */
@@ -31,8 +35,7 @@ public class LogUtils {
     /** 日志输出级别S,自定义定义的一个级别 */
     public static final int LEVEL_SYSTEM = 6;
 
-    /** 是否允许输出log */
-    private static int mDebuggable = Constants.DEBUGLEVEL;
+
 
     /** 用于记时的变量 */
     private static long mTimestamp = 0;
