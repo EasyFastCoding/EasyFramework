@@ -101,7 +101,7 @@ public class Dialogue {
 
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         mDecorView = (ViewGroup) ((Activity) mContext).getWindow().getDecorView().findViewById(android.R.id.content);
-        mRootView = (ViewGroup) layoutInflater.inflate(R.layout.layout_progress, null, false);
+        mRootView = (ViewGroup) layoutInflater.inflate(R.layout.ef_layout_progress, null, false);
         mRootView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
@@ -133,11 +133,11 @@ public class Dialogue {
     private int getAnimationResource(int gravity, boolean isInAnimation) {
         switch (gravity) {
             case Gravity.TOP:
-                return isInAnimation ? R.anim.loading_slidein_from_top : R.anim.loading_slideout_to_top;
+                return isInAnimation ? R.anim.ef_loading_slidein_from_top : R.anim.ef_loading_slideout_to_top;
             case Gravity.BOTTOM:
-                return isInAnimation ? R.anim.loading_slidein_from_bottom : R.anim.loading_slideout_to_bottom;
+                return isInAnimation ? R.anim.ef_loading_slidein_from_bottom : R.anim.ef_loading_slideout_to_bottom;
             case Gravity.CENTER:
-                return isInAnimation ? R.anim.loading_fadein_to_center : R.anim.loading_fadeout_from_center;
+                return isInAnimation ? R.anim.ef_loading_fadein_to_center : R.anim.ef_loading_fadeout_from_center;
             default:
                 // This case is not implemented because we don't expect any other gravity at the moment
         }
@@ -218,11 +218,11 @@ public class Dialogue {
                 break;
             case Gradient:
                 //TODO 设置半透明渐变背景
-                configDialogType(R.drawable.bg_overlay_gradient, true, false);
+                configDialogType(R.drawable.ef_bg_overlay_gradient, true, false);
                 break;
             case GradientCancel:
                 //TODO 设置半透明渐变背景
-                configDialogType(R.drawable.bg_overlay_gradient, true, true);
+                configDialogType(R.drawable.ef_bg_overlay_gradient, true, true);
                 break;
             default:
                 break;

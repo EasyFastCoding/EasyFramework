@@ -39,7 +39,7 @@ public class DialogueView extends LinearLayout {
     }
 
     private void initView() {
-        LayoutInflater.from(getContext()).inflate(R.layout.view_default_progress, this, true);
+        LayoutInflater.from(getContext()).inflate(R.layout.ef_view_default_progress, this, true);
         mBigLoadingImage = (ImageView) findViewById(R.id.iv_big_loading);
         mSmallLoadingImage = (ImageView) findViewById(R.id.iv_small_loading);
         mProgressBar = (CircleProgressBar) findViewById(R.id.circle_progress_bar);

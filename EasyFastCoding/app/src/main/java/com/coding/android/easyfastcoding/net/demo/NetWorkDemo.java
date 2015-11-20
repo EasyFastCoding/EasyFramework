@@ -49,7 +49,7 @@ public class NetWorkDemo extends Activity implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.ef_activity_main);
         ButterKnife.bind(this);
 
         initEvent();

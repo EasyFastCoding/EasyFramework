@@ -20,7 +20,7 @@ public class GlideDemoActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityGlideBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_glide);
+        ActivityGlideBinding binding = DataBindingUtil.setContentView(this, R.layout.ef_activity_glide);
         GlideImageLoader.circleImage(this, url, binding.iv);
     }
 
