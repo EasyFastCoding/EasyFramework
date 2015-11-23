@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import com.coding.android.easyfastcoding.R;
+import com.coding.android.easyfastcoding.widget.CircleProgressBar;
 
 /**
  * 显示成功，失败，提示，Loading的对话框

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.coding.android.easyfastcoding.R;
+import com.coding.android.easyfastcoding.widget.CircleProgressBar;
 
 /**
  * 默认的loading

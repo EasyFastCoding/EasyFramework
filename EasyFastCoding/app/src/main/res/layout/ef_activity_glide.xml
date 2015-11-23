@@ -10,5 +10,14 @@
             android:layout_width="100dp"
             android:layout_height="100dp" />
 
+        <Button
+            android:id="@+id/bt_start_net_demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_net_demo"/>
+        <TextView
+            android:id="@+id/tv_show_event_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 </layout>

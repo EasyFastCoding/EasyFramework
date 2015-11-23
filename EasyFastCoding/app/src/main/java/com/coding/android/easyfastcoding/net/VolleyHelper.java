@@ -39,7 +39,7 @@ import java.util.Map;
  * gsonRequest.setTag("TAG1");
  * //多个请求的取消
  * RequestQueue requestQueue = VolleyTools.getInstance(MainActivity.this).getQueue();
- * requestQueue.cancelAll(null);//取消队列里面所有的请求
+ * requestQueue.cancelAll(null); //tag不能为空 否则报错
  * requestQueue.cancelAll("TAG1");//取消指定请求
  */
 public class VolleyHelper {

@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.widget.dialog;
+package com.coding.android.easyfastcoding.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

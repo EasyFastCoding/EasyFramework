@@ -1,33 +1,34 @@
 package com.coding.android.easyfastcoding.net.demo;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
 import com.coding.android.easyfastcoding.common.utils.LogUtils;
 import com.coding.android.easyfastcoding.common.utils.UIUtils;
+import com.coding.android.easyfastcoding.event.EventDemo;
 import com.coding.android.easyfastcoding.net.VolleyHelper;
 import com.coding.android.easyfastcoding.net.bean.DemoBean;
 import com.coding.android.easyfastcoding.net.request.DemoRequest;
+import com.coding.android.easyfastcoding.view.activity.BaseActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by 杨强彪 on 2015/11/19.
  *
- * @描述：
+ * @描述：  volley请求的demo类
  */
-public class NetWorkDemo extends Activity implements View.OnClickListener {
+public class NetWorkDemo extends BaseActivity implements View.OnClickListener {
 
     @Bind(R.id.btn1)
     Button btn1;
@@ -47,12 +48,24 @@ public class NetWorkDemo extends Activity implements View.OnClickListener {
     NetworkImageView niv;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.ef_activity_main);
-        ButterKnife.bind(this);
+    protected View getTopView() {
+        View titleView = getLayoutInflater().inflate(R.layout.view_title, null);
+        initTitleView(titleView);
+        LogUtils.i("获取topView");
+        return titleView;
+    }
 
+    @Override
+    protected View getCenterView() {
+        View centerView = getLayoutInflater().inflate(R.layout.ef_activity_main, null);
+        ButterKnife.bind(this,centerView);
         initEvent();
+        return centerView ;
+    }
+
+    private void initTitleView(View titleView) {
+        TextView tv_title = (TextView) titleView.findViewById(R.id.tv_title);
+        tv_title.setText(CommonConfig.NETWORK_DEMO_TITLE);
     }
 
     private void initEvent() {
@@ -69,7 +82,7 @@ public class NetWorkDemo extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.btn1:    //  TODO  StringRequest
-
+                EventBus.getDefault().post(new EventDemo("StringRequest"));
                 String stringUrl = CommonConfig.DEMO_STRING_REQUEST_URL;
                 DemoRequest stringRequest = new DemoRequest();
                 VolleyHelper.getInstance(UIUtils.getContext()).stringRequest_net(stringUrl, stringRequest, new
@@ -88,7 +101,7 @@ public class NetWorkDemo extends Activity implements View.OnClickListener {
                         });
                 break;
             case R.id.btn2:    //  TODO  JsonObjectRequest
-
+                EventBus.getDefault().post(new EventDemo("JsonObjectRequest"));
                 String JORurl = CommonConfig.DEMO_STRING_REQUEST_URL;
                 DemoRequest JORrequest = new DemoRequest();
                 VolleyHelper.getInstance(UIUtils.getContext()).jsonObjectRequest_net(JORurl, JORrequest, new
@@ -107,7 +120,7 @@ public class NetWorkDemo extends Activity implements View.OnClickListener {
                         });
                 break;
             case R.id.btn3:    //  TODO  JsonArrayRequest
-
+                EventBus.getDefault().post(new EventDemo("JsonArrayRequest"));
                 String JARurl = CommonConfig.DEMO_STRING_REQUEST_URL;
                 DemoRequest JARrequest = new DemoRequest();
                 VolleyHelper.getInstance(UIUtils.getContext()).jsonArrayRequest_net(JARurl, JARrequest, new
@@ -132,6 +145,7 @@ public class NetWorkDemo extends Activity implements View.OnClickListener {
 
                 break;
             case R.id.btn6:    //  TODO  自定义请求GsonRequest
+                EventBus.getDefault().post(new EventDemo("自定义请求GsonRequest"));
                 String GRurl = CommonConfig.DEMO_STRING_REQUEST_URL;
                 DemoRequest GRrequest = new DemoRequest();
                 VolleyHelper.getInstance(UIUtils.getContext()).gsonBeanReqest_net(GRurl, GRrequest, DemoBean.class,
@@ -152,4 +166,5 @@ public class NetWorkDemo extends Activity implements View.OnClickListener {
                 break;
         }
     }
+    
 }

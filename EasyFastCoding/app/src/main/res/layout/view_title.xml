@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/title_bg"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white">
+
+    <!-- 中间显示 -->
+    <RelativeLayout
+        android:id="@+id/layout_title_center"
+        android:layout_width="195dp"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/title_color"
+            android:textSize="17sp"/>
+
+        <ImageView
+            android:id="@+id/iv_title_image"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="9dp"
+            android:layout_toLeftOf="@id/tv_title"
+            android:background="@mipmap/ic_launcher"/>
+    </RelativeLayout>
+
+    <!-- 左边显示 -->
+
+    <RelativeLayout
+        android:id="@+id/layout_title_back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/layout_title_center"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_title_back"
+            android:layout_width="9dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="16.5dp"
+            android:background="@mipmap/ic_launcher"/>
+    </RelativeLayout>
+
+    <!-- 右边显示 -->
+
+    <RelativeLayout
+        android:id="@+id/layout_title_right"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/layout_title_center"
+        >
+
+        <TextView
+            android:id="@+id/tv_title_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@mipmap/ic_launcher"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+</RelativeLayout>
