@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.widget.pull2refresh;
+package com.coding.android.easyfastcoding.widget.pull2refresh.base;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,14 +11,24 @@ import android.widget.TextView;
 
 import com.coding.android.easyfastcoding.R;
 
-import org.w3c.dom.Text;
-
 /**
  * Created by cy on 2015/11/20.
+ * <p/>
+ * 处理刷新view的类
  * <p/>
  * 继承改抽象类实现相应的抽象方法，做出各种下拉刷新，上拉加载效果
  */
 public abstract class BaseRefreshViewHolder {
+
+    /**
+     * 手指移动距离与下拉刷新控件paddingTop移动距离的比值
+     */
+    private static final float PULL_DISTANCE_SCALE = 1.8f;
+    /**
+     * 下拉刷新控件paddingTop的弹簧距离与下拉刷新控件高度的比值
+     */
+    private static final float SPRING_DISTANCE_SCALE = 0.4f;
+    //=========> private <==========
     /**
      * 是否开启加载更多功能
      */
@@ -31,12 +41,21 @@ public abstract class BaseRefreshViewHolder {
      * 整个加载更多控件的背景drawable资源id
      */
     private int mLoadingMoreBgDrawableRes = -1;
-
     /**
      * 头部控件移动动画时常
      */
     private int mTopAnimDuration = 500;
+    /**
+     * 手指移动距离与下拉刷新控件paddingTop移动距离的比值，默认1.8f
+     */
+    private float mPullDistanceScale = PULL_DISTANCE_SCALE;
+    /**
+     * 下拉刷新控件paddingTop的弹簧距离与下拉刷新控件高度的比值，默认0.4f
+     */
+    private float mSpringDistanceScale = SPRING_DISTANCE_SCALE;
 
+
+    //=========> protected <==========
     /**
      * 下拉刷新控件的背景颜色id
      */
@@ -45,7 +64,10 @@ public abstract class BaseRefreshViewHolder {
      * 下拉刷新控件的背景图片id
      */
     protected int mRefreshBgDrawableRes = -1;
-
+    /**
+     * 下拉刷新上拉加载更多控件
+     */
+    protected BaseRefreshLayout mBaseRefreshLayout;
     /**
      * 上拉加载更多View
      */
@@ -68,13 +90,11 @@ public abstract class BaseRefreshViewHolder {
      */
     protected AnimationDrawable mFooterChrysanthemumAd;
 
-
     protected Context mContext;
     /**
      * 正在加载更多时的文本
      */
     protected String mLoadingMoreText = "加载中...";
-
 
     /**
      * @param context
@@ -133,6 +153,24 @@ public abstract class BaseRefreshViewHolder {
         return mLoadingMoreView;
     }
 
+    /**
+     * 进入上拉加载更多状态
+     */
+    public void changeToLoadingMore() {
+        if (mIsLoadingMoreEnabled && mFooterChrysanthemumAd != null) {
+            mFooterChrysanthemumAd.start();
+        }
+    }
+
+    /**
+     * 结束上拉加载更多
+     */
+    public void onEndLoadingMore() {
+        if (mIsLoadingMoreEnabled && mFooterChrysanthemumAd != null) {
+            mFooterChrysanthemumAd.stop();
+        }
+    }
+
     //=================================== 下拉刷新 ====================================
 
     /**
@@ -163,6 +201,20 @@ public abstract class BaseRefreshViewHolder {
         mTopAnimDuration = topAnimDuration;
     }
 
+    /**
+     * 获取下拉刷新控件的高度，如果初始化时的高度和最后展开的最大高度不一致，需重写该方法返回最大高度
+     *
+     * @return
+     */
+    public int getRefreshHeaderViewHeight() {
+        if (mRefreshView != null) {
+            // 测量下拉刷新控件的高度
+            mRefreshView.measure(0, 0);
+            return mRefreshView.getMeasuredHeight();
+        }
+        return 0;
+    }
+
     //===================================== 需要子类实现的抽象方法 ====================================
 
     /**
@@ -177,6 +229,7 @@ public abstract class BaseRefreshViewHolder {
      * @param moveYDistance 整个下拉刷新控件paddingTop变化的值，如果有弹簧距离，会大于整个下拉刷新控件的高度
      */
     public abstract void handleScale(float scale, int moveYDistance);
+
     /**
      * 进入到未处理下拉刷新状态
      */
@@ -201,5 +254,63 @@ public abstract class BaseRefreshViewHolder {
      * 结束下拉刷新
      */
     public abstract void onEndRefreshing();
+
+    //======================================== 一些属性的配置 ========================================
+
+    /**
+     * 手指移动距离与下拉刷新控件paddingTop移动距离的比值
+     */
+    public float getPaddingTopScale() {
+        return mPullDistanceScale;
+    }
+
+    /**
+     * 设置手指移动距离与下拉刷新控件paddingTop移动距离的比值
+     */
+    public void setPullDistanceScale(float pullDistanceScale) {
+        mPullDistanceScale = pullDistanceScale;
+    }
+
+    /**
+     * 下拉刷新控件paddingTop的弹簧距离与下拉刷新控件高度的比值
+     */
+    public float getSpringDistanceScale() {
+        return mSpringDistanceScale;
+    }
+
+    /**
+     * 设置下拉刷新控件paddingTop的弹簧距离与下拉刷新控件高度的比值，不能小于0，如果刷新控件比较高，建议将该值设置小一些
+     */
+    public void setSpringDistanceScale(float springDistanceScale) {
+        if (springDistanceScale < 0) {
+            throw new RuntimeException("下拉刷新控件paddingTop的弹簧距离与下拉刷新控件高度的比值springDistanceScale不能小于0");
+        }
+        mSpringDistanceScale = springDistanceScale;
+    }
+
+    /**
+     * 是处于能够进入刷新状态
+     */
+    public boolean canChangeToRefreshingStatus() {
+        return false;
+    }
+
+    /**
+     * 改变整个下拉刷新头部控件移动一定的距离（带动画），自定义刷新控件进入刷新状态前后的高度有变化时可以使用该方法（参考BGAStickinessRefreshView）
+     *
+     * @param distance
+     */
+    public void startChangeWholeHeaderViewPaddingTop(int distance) {
+        mBaseRefreshLayout.startChangeWholeHeaderViewPaddingTop(distance);
+    }
+
+
+    /**
+     * 设置下拉刷新上拉加载更多控件，该方法是设置BaseRefreshViewHolder给RefreshLayout时由RefreshLayout调用
+     */
+    public void setRefreshLayout(BaseRefreshLayout baseRefreshLayout) {
+        mBaseRefreshLayout = baseRefreshLayout;
+    }
+
 
 }
