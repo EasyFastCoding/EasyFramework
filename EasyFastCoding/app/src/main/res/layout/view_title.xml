@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/title_bg"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@color/white">
+<RelativeLayout
+    android:id="@+id/title_bg"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/white">
 
     <!-- 中间显示 -->
     <RelativeLayout
@@ -30,7 +31,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="9dp"
             android:layout_toLeftOf="@id/tv_title"
-            android:background="@mipmap/ic_launcher"/>
+            android:background="@mipmap/ic_launcher"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <!-- 左边显示 -->
@@ -44,11 +46,10 @@
 
         <ImageView
             android:id="@+id/iv_title_back"
-            android:layout_width="9dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="16.5dp"
-            android:background="@mipmap/ic_launcher"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"/>
     </RelativeLayout>
 
     <!-- 右边显示 -->
@@ -68,7 +69,18 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:background="@mipmap/ic_launcher"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/iv_right_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@mipmap/chat_top_btn_left"/>
+
     </RelativeLayout>
 
 </RelativeLayout>
