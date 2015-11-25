@@ -20,6 +20,8 @@ import java.lang.reflect.Field;
 
 /**
  * 下拉刷新、上拉加载更多、可添加自定义（固定、可滑动）头部控件（例如:app顶部的广告位）
+ *
+ * 该view主要处理下拉，上拉手势事件，下拉及回弹等等。
  * Created by cy on 2015/11/20.
  */
 public class BaseRefreshLayout extends LinearLayout {
@@ -39,7 +41,7 @@ public class BaseRefreshLayout extends LinearLayout {
     /**
      * 整个头部控件，下拉刷新控件mRefreshHeaderView和下拉刷新控件下方的自定义组件mCustomHeaderView的父控件
      */
-    private LinearLayout mWholeHeaderView;
+    private LinearLayout mWholeHeaderViewContainer;
     /**
      * 手指按下时，y轴方向的偏移量
      */
@@ -53,11 +55,11 @@ public class BaseRefreshLayout extends LinearLayout {
      */
     private int mWholeHeaderViewDownPaddingTop = 0;
     /**
-     * 整个头部控件最小的paddingTop
+     * 整个头部控件最小的paddingTop，即下拉刷新view的高度
      */
     private int mMinWholeHeaderViewPaddingTop;
     /**
-     * 整个头部控件最大的paddingTop
+     * 整个头部控件最大的paddingTop，即支持的最大下拉高度
      */
     private int mMaxWholeHeaderViewPaddingTop;
     /**
@@ -232,11 +234,11 @@ public class BaseRefreshLayout extends LinearLayout {
     public boolean onInterceptTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                mInterceptTouchDownX = event.getRawX();
+                mInterceptTouchDownX = event.getRawX();//event.getX是相对于widget左上角，而event.getRawX则是相对于屏幕左上角。
                 mInterceptTouchDownY = event.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (!mIsLoadingMore && (mCurrentRefreshStatus != RefreshStatus.REFRESHING)) {
+                if (!mIsLoadingMore && (mCurrentRefreshStatus != RefreshStatus.REFRESHING)) {//当前不处于上拉加载 和 下拉刷新状态
                     if (mInterceptTouchDownX == -1) {
                         mInterceptTouchDownX = (int) event.getRawX();
                     }
@@ -246,13 +248,14 @@ public class BaseRefreshLayout extends LinearLayout {
 
                     int interceptTouchMoveDistanceY = (int) (event.getRawY() - mInterceptTouchDownY);
                     // 可以没有上拉加载更多，但是必须有下拉刷新，否则就不拦截事件
-                    if (Math.abs(event.getRawX() - mInterceptTouchDownX) < Math.abs(interceptTouchMoveDistanceY) && mRefreshHeaderView != null) {
+                    if (Math.abs(event.getRawX() - mInterceptTouchDownX) < Math.abs(interceptTouchMoveDistanceY) && mRefreshHeaderView != null) {//X方向移动距离比Y方向的大
                         if ((interceptTouchMoveDistanceY > 0 && shouldHandleRefresh()) || (interceptTouchMoveDistanceY < 0 && shouldHandleLoadingMore()) || interceptTouchMoveDistanceY < 0 && !isWholeHeaderViewCompleteInvisible()) {
 
                             // ACTION_DOWN时没有消耗掉事件，子控件会处于按下状态，这里设置ACTION_CANCEL，使子控件取消按下状态
                             event.setAction(MotionEvent.ACTION_CANCEL);
                             super.onInterceptTouchEvent(event);
                             return true;
+                            //返回true被拦截的情况：当顶部的广告页面没有完全隐藏，同时支持上拉下拉刷新。这是listView或者scrollView的上下滑动事件会被拦截。
                         }
                     }
                 }
@@ -270,18 +273,18 @@ public class BaseRefreshLayout extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (null != mRefreshHeaderView) {
+        if (null != mRefreshHeaderView) { //前提是能下拉刷新
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     mWholeHeaderDownY = (int) event.getY();
                     if (mCustomHeaderView != null) {
-                        mWholeHeaderViewDownPaddingTop = mWholeHeaderView.getPaddingTop();
+                        mWholeHeaderViewDownPaddingTop = mWholeHeaderViewContainer.getPaddingTop();
                     }
 
-                    if (mCustomHeaderView == null || !mIsCustomHeaderViewScrollable) {
+                    if (mCustomHeaderView == null || !mIsCustomHeaderViewScrollable) {//不需要考虑头部自定义控件的事件
                         mRefreshDownY = (int) event.getY();
                     }
-                    if (isWholeHeaderViewCompleteInvisible()) {
+                    if (isWholeHeaderViewCompleteInvisible()) {//头部自定义控件不可见了
                         mRefreshDownY = (int) event.getY();
                         return true;
                     }
@@ -315,13 +318,13 @@ public class BaseRefreshLayout extends LinearLayout {
     private boolean handleActionUpOrCancel(MotionEvent event) {
         boolean isReturnTrue = false;
         // 如果当前头部刷新控件没有完全隐藏，则需要返回true，自己消耗ACTION_UP事件
-        if ((mCustomHeaderView == null || (mCustomHeaderView != null && !mIsCustomHeaderViewScrollable)) && mWholeHeaderView.getPaddingTop() != mMinWholeHeaderViewPaddingTop) {
+        if ((mCustomHeaderView == null || (mCustomHeaderView != null && !mIsCustomHeaderViewScrollable)) && mWholeHeaderViewContainer.getPaddingTop() != mMinWholeHeaderViewPaddingTop) {
             isReturnTrue = true;
         }
 
         if (mCurrentRefreshStatus == RefreshStatus.PULL_DOWN || mCurrentRefreshStatus == RefreshStatus.IDLE) {
             // 处于下拉刷新状态，松手时隐藏下拉刷新控件
-            if (mCustomHeaderView == null || (mCustomHeaderView != null && mWholeHeaderView.getPaddingTop() < 0 && mWholeHeaderView.getPaddingTop() > mMinWholeHeaderViewPaddingTop)) {
+            if (mCustomHeaderView == null || (mCustomHeaderView != null && mWholeHeaderViewContainer.getPaddingTop() < 0 && mWholeHeaderViewContainer.getPaddingTop() > mMinWholeHeaderViewPaddingTop)) {
                 hiddenRefreshHeaderView();
             }
             mCurrentRefreshStatus = RefreshStatus.IDLE;
@@ -353,10 +356,12 @@ public class BaseRefreshLayout extends LinearLayout {
      * @return true表示自己消耗掉该事件，false表示不消耗该事件
      */
     private boolean handleActionMove(MotionEvent event) {
+        //1.当前处于刷新状态，则返回
         if (mCurrentRefreshStatus == RefreshStatus.REFRESHING || mIsLoadingMore) {
             return false;
         }
 
+        //顶部自定view不需要处理触摸事件，记录下开始下滑的Y坐标
         if ((mCustomHeaderView == null || !mIsCustomHeaderViewScrollable) && mRefreshDownY == -1) {
             mRefreshDownY = (int) event.getY();
         }
@@ -364,15 +369,19 @@ public class BaseRefreshLayout extends LinearLayout {
             mRefreshDownY = (int) event.getY();
         }
 
+        //计算刷新view需要移动的距离
         int refreshDiffY = (int) event.getY() - mRefreshDownY;
         refreshDiffY = (int) (refreshDiffY / mRefreshViewHolder.getPaddingTopScale());
 
         // 如果是向下拉，并且当前可见的第一个条目的索引等于0，才处理整个头部控件的padding
         if (refreshDiffY > 0 && shouldHandleRefresh() && isCustomHeaderViewCompleteVisible()) {
+
             int paddingTop = mMinWholeHeaderViewPaddingTop + refreshDiffY;
+
             if (paddingTop > 0 && mCurrentRefreshStatus != RefreshStatus.RELEASE_REFRESH) {
                 // 下拉刷新控件完全显示，并且当前状态没有处于释放开始刷新状态
                 mCurrentRefreshStatus = RefreshStatus.RELEASE_REFRESH;
+                // 更新刷新状态的回调
                 handleRefreshStatusChanged();
 
                 mRefreshViewHolder.handleScale(1.0f, refreshDiffY);
@@ -385,6 +394,7 @@ public class BaseRefreshLayout extends LinearLayout {
                         handleRefreshStatusChanged();
                     }
                 }
+                //处理下拉进度
                 float scale = 1 - paddingTop * 1.0f / mMinWholeHeaderViewPaddingTop;
                 /**
                  * 往下滑
@@ -397,7 +407,7 @@ public class BaseRefreshLayout extends LinearLayout {
                 mRefreshViewHolder.handleScale(scale, refreshDiffY);
             }
             paddingTop = Math.min(paddingTop, mMaxWholeHeaderViewPaddingTop);
-            mWholeHeaderView.setPadding(0, paddingTop, 0, 0);
+            mWholeHeaderViewContainer.setPadding(0, paddingTop, 0, 0);
 
             if (mRefreshViewHolder.canChangeToRefreshingStatus()) {
                 mWholeHeaderDownY = -1;
@@ -410,12 +420,12 @@ public class BaseRefreshLayout extends LinearLayout {
         }
 
 
-        if (mCustomHeaderView != null && mIsCustomHeaderViewScrollable) {
+        if (mCustomHeaderView != null && mIsCustomHeaderViewScrollable) { //顶部自定义view需要处理滑动事件
             if (mWholeHeaderDownY == -1) {
                 mWholeHeaderDownY = (int) event.getY();
 
                 if (mCustomHeaderView != null) {
-                    mWholeHeaderViewDownPaddingTop = mWholeHeaderView.getPaddingTop();
+                    mWholeHeaderViewDownPaddingTop = mWholeHeaderViewContainer.getPaddingTop();
                 }
             }
 
@@ -426,7 +436,7 @@ public class BaseRefreshLayout extends LinearLayout {
                 if (paddingTop < mMinWholeHeaderViewPaddingTop - mCustomHeaderView.getMeasuredHeight()) {
                     paddingTop = mMinWholeHeaderViewPaddingTop - mCustomHeaderView.getMeasuredHeight();
                 }
-                mWholeHeaderView.setPadding(0, paddingTop, 0, 0);
+                mWholeHeaderViewContainer.setPadding(0, paddingTop, 0, 0);
 
                 return true;
             }
@@ -439,13 +449,13 @@ public class BaseRefreshLayout extends LinearLayout {
      * 隐藏下拉刷新控件，带动画
      */
     private void hiddenRefreshHeaderView() {
-        ValueAnimator animator = ValueAnimator.ofInt(mWholeHeaderView.getPaddingTop(), mMinWholeHeaderViewPaddingTop);
+        ValueAnimator animator = ValueAnimator.ofInt(mWholeHeaderViewContainer.getPaddingTop(), mMinWholeHeaderViewPaddingTop);
         animator.setDuration(mRefreshViewHolder.getTopAnimDuration());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int paddingTop = (int) animation.getAnimatedValue();
-                mWholeHeaderView.setPadding(0, paddingTop, 0, 0);
+                mWholeHeaderViewContainer.setPadding(0, paddingTop, 0, 0);
             }
         });
         animator.start();
@@ -488,11 +498,12 @@ public class BaseRefreshLayout extends LinearLayout {
             mRefreshHeaderView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
             mRefreshHeaderViewHeight = mRefreshViewHolder.getRefreshHeaderViewHeight();
+            
             mMinWholeHeaderViewPaddingTop = -mRefreshHeaderViewHeight;
             mMaxWholeHeaderViewPaddingTop = (int) (mRefreshHeaderViewHeight * mRefreshViewHolder.getSpringDistanceScale());
 
-            mWholeHeaderView.setPadding(0, mMinWholeHeaderViewPaddingTop, 0, 0);
-            mWholeHeaderView.addView(mRefreshHeaderView, 0);
+            mWholeHeaderViewContainer.setPadding(0, mMinWholeHeaderViewPaddingTop, 0, 0);
+            mWholeHeaderViewContainer.addView(mRefreshHeaderView, 0);
         }
     }
 
@@ -647,9 +658,9 @@ public class BaseRefreshLayout extends LinearLayout {
             getLocationOnScreen(location);
             int mOnScreenY = location[1];
 
-            mWholeHeaderView.getLocationOnScreen(location);
+            mWholeHeaderViewContainer.getLocationOnScreen(location);
             int wholeHeaderViewOnScreenY = location[1];
-            if (wholeHeaderViewOnScreenY + mWholeHeaderView.getMeasuredHeight() <= mOnScreenY) {
+            if (wholeHeaderViewOnScreenY + mWholeHeaderViewContainer.getMeasuredHeight() <= mOnScreenY) {
                 return true;
             } else {
                 return false;
@@ -685,13 +696,13 @@ public class BaseRefreshLayout extends LinearLayout {
      * 设置下拉刷新控件的paddingTop到0，带动画
      */
     private void changeRefreshHeaderViewToZero() {
-        ValueAnimator animator = ValueAnimator.ofInt(mWholeHeaderView.getPaddingTop(), 0);
+        ValueAnimator animator = ValueAnimator.ofInt(mWholeHeaderViewContainer.getPaddingTop(), 0);
         animator.setDuration(mRefreshViewHolder.getTopAnimDuration());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int paddingTop = (int) animation.getAnimatedValue();
-                mWholeHeaderView.setPadding(0, paddingTop, 0, 0);
+                mWholeHeaderViewContainer.setPadding(0, paddingTop, 0, 0);
             }
         });
         animator.start();
@@ -718,9 +729,7 @@ public class BaseRefreshLayout extends LinearLayout {
      */
 
     /**
-     * 上拉加载更多时是否显示加载更多控件
-     *
-     * @param isShowLoadingMoreView
+     * 上拉到底部时，是否显示上拉记载更多view
      */
     public void setIsShowLoadingMoreView(boolean isShowLoadingMoreView) {
         mIsShowLoadingMoreView = isShowLoadingMoreView;
@@ -754,7 +763,7 @@ public class BaseRefreshLayout extends LinearLayout {
         mCustomHeaderView = customHeaderView;
         if (mCustomHeaderView != null) {
             mCustomHeaderView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-            mWholeHeaderView.addView(mCustomHeaderView);
+            mWholeHeaderViewContainer.addView(mCustomHeaderView);
             mIsCustomHeaderViewScrollable = scrollable;
         }
     }
@@ -764,13 +773,13 @@ public class BaseRefreshLayout extends LinearLayout {
      */
     public void startChangeWholeHeaderViewPaddingTop(int distance) {
         //通过不断的改变paddingTop的值来达到回弹动画
-        ValueAnimator animator = ValueAnimator.ofInt(mWholeHeaderView.getPaddingTop(), mWholeHeaderView.getPaddingTop() - distance);
+        ValueAnimator animator = ValueAnimator.ofInt(mWholeHeaderViewContainer.getPaddingTop(), mWholeHeaderViewContainer.getPaddingTop() - distance);
         animator.setDuration(mRefreshViewHolder.getTopAnimDuration());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int paddingTop = (int) animation.getAnimatedValue();
-                mWholeHeaderView.setPadding(0, paddingTop, 0, 0);
+                mWholeHeaderViewContainer.setPadding(0, paddingTop, 0, 0);
             }
         });
         animator.start();

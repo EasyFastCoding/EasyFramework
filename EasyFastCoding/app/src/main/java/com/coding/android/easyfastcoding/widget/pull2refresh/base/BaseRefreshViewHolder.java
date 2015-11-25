@@ -14,9 +14,9 @@ import com.coding.android.easyfastcoding.R;
 /**
  * Created by cy on 2015/11/20.
  * <p/>
- * 处理刷新view的类
+ * 处理刷新view的类，主要功能：上拉，下拉刷新viwe的显示效果配置，拉动距离设置等等。
  * <p/>
- * 继承改抽象类实现相应的抽象方法，做出各种下拉刷新，上拉加载效果
+ * 继承这个抽象类实现相应的抽象方法，做出各种下拉刷新，上拉加载效果
  */
 public abstract class BaseRefreshViewHolder {
 
