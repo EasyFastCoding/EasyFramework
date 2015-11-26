@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,9 +24,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState  ) {
-        //        ViewUtils.startTranslucent(this);
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.ef_activity_base);
 
     }
@@ -45,15 +43,14 @@ public class BaseActivity extends AppCompatActivity {
             initToolbar(mToolBar, mToolBarTitle);
             return;
         }
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
-                .LayoutParams.MATCH_PARENT);
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         mParentView.addView(getLayoutInflater().inflate(layoutResID, null), params);
+
     }
 
     @Override
     public void setContentView(View view) {
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
-                .LayoutParams.MATCH_PARENT);
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         mParentView.addView(view, params);
     }
 

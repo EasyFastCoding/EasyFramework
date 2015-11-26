@@ -3,7 +3,6 @@ package com.coding.android.easyfastcoding.imageload.glide.demo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,10 +33,6 @@ public class GlideDemoActivity extends BaseActivity {
     TextView tvShowEventText;
     private String url = CommonConfig.IMAGE_URL;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +41,7 @@ public class GlideDemoActivity extends BaseActivity {
         initView();
         initEvent();
     }
-    //    @Override
-//    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-//        super.onCreate(savedInstanceState, persistentState);
-//        System.out.println("11111111111111111111111111");
-//        LogUtils.i("初始化");
-//        init();
-//        initView();
-//        initEvent();
-//    }
+
 
     private void init() {
         // 注册EventBus
@@ -63,7 +50,6 @@ public class GlideDemoActivity extends BaseActivity {
 
     private void initView() {
         initToolbar();
-        LogUtils.i("初始化View");
         setContentView(R.layout.ef_activity_glide);
         ButterKnife.bind(this);
         GlideImageLoader.circleImage(this, url, iv);
@@ -71,8 +57,6 @@ public class GlideDemoActivity extends BaseActivity {
     }
 
     private void initToolbar() {
-        LogUtils.i("初始化Toolbar");
-
         setTitle(CommonConfig.GLIDE_DEMO_TITLE);
 
         getToolBar().setNavigationIcon(R.drawable.ef_selector_back_icon);
