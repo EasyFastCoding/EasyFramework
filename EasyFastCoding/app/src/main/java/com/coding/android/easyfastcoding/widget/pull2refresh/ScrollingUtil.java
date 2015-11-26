@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.widget.pull2refresh.base;
+package com.coding.android.easyfastcoding.widget.pull2refresh;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

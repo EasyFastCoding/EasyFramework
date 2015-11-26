@@ -1,9 +1,10 @@
 package com.coding.android.easyfastcoding.net.demo;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.coding.android.easyfastcoding.R;
@@ -15,6 +16,7 @@ import com.coding.android.easyfastcoding.net.VolleyHelper;
 import com.coding.android.easyfastcoding.net.bean.DemoBean;
 import com.coding.android.easyfastcoding.net.request.DemoRequest;
 import com.coding.android.easyfastcoding.view.activity.BaseActivity;
+import com.coding.android.easyfastcoding.widget.pull2refresh.demo.Pull2RefreashScrollViewDemoActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,7 +28,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by 杨强彪 on 2015/11/19.
  *
- * @描述：  volley请求的demo类
+ * @描述： volley请求的demo类
  */
 public class NetWorkDemo extends BaseActivity implements View.OnClickListener {
 
@@ -48,25 +50,33 @@ public class NetWorkDemo extends BaseActivity implements View.OnClickListener {
     NetworkImageView niv;
 
     @Override
-    protected View getTopView() {
-        View titleView = getLayoutInflater().inflate(R.layout.view_title, null);
-        initTitleView(titleView);
-        LogUtils.i("获取topView");
-        return titleView;
-    }
-
-    @Override
-    protected View getCenterView() {
-        View centerView = getLayoutInflater().inflate(R.layout.ef_activity_main, null);
-        ButterKnife.bind(this,centerView);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initView();
         initEvent();
-        return centerView ;
     }
 
-    private void initTitleView(View titleView) {
-        TextView tv_title = (TextView) titleView.findViewById(R.id.tv_title);
-        tv_title.setText(CommonConfig.NETWORK_DEMO_TITLE);
+    private void initView() {
+        initToolbar();
+        setContentView(R.layout.ef_activity_main);
+        ButterKnife.bind(this);
     }
+
+    private void initToolbar() {
+
+        setTitle(CommonConfig.NETWORK_DEMO_TITLE);
+
+        getToolBar().setNavigationIcon(R.drawable.ef_selector_back_icon);
+
+        getToolBar().setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_right);
+                finish();
+            }
+        });
+    }
+
 
     private void initEvent() {
         btn1.setOnClickListener(this);
@@ -138,7 +148,9 @@ public class NetWorkDemo extends BaseActivity implements View.OnClickListener {
                             }
                         });
                 break;
-            case R.id.btn4:    //  待添加
+            case R.id.btn4:    //  待添加 (Pull2RefreashScrollView)
+                Intent intent = new Intent(NetWorkDemo.this, Pull2RefreashScrollViewDemoActivity.class);
+                startActivity(intent);
 
                 break;
             case R.id.btn5:    //  待添加
@@ -166,5 +178,5 @@ public class NetWorkDemo extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
-    
+
 }

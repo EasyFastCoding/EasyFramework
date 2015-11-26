@@ -19,6 +19,7 @@ public interface CommonConfig {
 
     /**------------------------------- 网络请求的url部分 ----------------------------------begin */
     String DEMO_STRING_REQUEST_URL = "????????????????????";
+    String IMAGE_URL = "http://b.hiphotos.baidu.com/image/pic/item/b21bb051f81986188ff38b8448ed2e738bd4e67e.jpg";
 
 
     /**------------------------------- 网络请求的url部分 ----------------------------------end */
@@ -27,6 +28,7 @@ public interface CommonConfig {
 
     /**------------------------------- Toolbar部分 ----------------------------------begin */
     String NETWORK_DEMO_TITLE = "网络请求demo";
+    String GLIDE_DEMO_TITLE = "GLIDE_DEMO_TITLE";
 
 
     /**------------------------------- Toolbar部分 ----------------------------------end */

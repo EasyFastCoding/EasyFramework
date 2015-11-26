@@ -21,6 +21,10 @@
             android:name=".net.demo.NetWorkDemo"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".widget.pull2refresh.demo.Pull2RefreashScrollViewDemoActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>

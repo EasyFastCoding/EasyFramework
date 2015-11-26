@@ -1,107 +1,107 @@
 package com.coding.android.easyfastcoding.view.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.coding.android.easyfastcoding.MainActivity;
 import com.coding.android.easyfastcoding.R;
 
 
 /**
- * @描述： Activity 的基类
+ * 带ToolBar的基础Activity
  */
-public abstract class BaseActivity extends Activity {
-    /**
-     * 顶部title文字
-     */
-    public TextView title_content;
-    /**
-     * 左边返回键
-     */
-    public ImageView title_left_btn;
-    /**
-     * 右边按键
-     */
-    public ImageView title_right_btn;
-    /**
-     * 顶部视图
-     */
-    public View topView;
-    /**
-     * 中间视图
-     */
-    public View centerView;
-
-    /** 页面 上方布局，中间视图布局 */
-    protected LinearLayout top_lay, center_lay;
-    protected Bundle savedInstanceState;
-
+public class BaseActivity extends AppCompatActivity {
+    private LinearLayout mParentView;
+    private Toolbar mToolBar;
+    private TextView mToolBarTitle;
+    //    private Button mTextIcon;
+    private TextView mTextRight;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState  ) {
+        //        ViewUtils.startTranslucent(this);
         super.onCreate(savedInstanceState);
-        controlTitle();
-        setContentView(R.layout.activity_base_main);
-        this.savedInstanceState = savedInstanceState;
-        initView();
+
+        setContentView(R.layout.ef_activity_base);
+
     }
 
-    /**
-     * 得到最上面的视图
-     */
-    protected abstract View getTopView();
+    @Override
+    public void setContentView(int layoutResID) {
+        if (R.layout.ef_activity_base == layoutResID) {
+            super.setContentView(layoutResID);
 
-    /**
-     * 得到中间的视图
-     */
-    protected abstract View getCenterView();
+            mParentView = (LinearLayout) findViewById(R.id.base_parent_view);
+            mToolBar = (Toolbar) findViewById(R.id.toolbar);
+            mToolBarTitle = (TextView) findViewById(R.id.toolbar_title);
+            mTextRight = (TextView) findViewById(R.id.tv_right);
+            //   mTextIcon = (Button) findViewById(R.id.text_icon);
 
-    /**
-     * 去除屏幕标题栏
-     **/
-    protected void controlTitle() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setBackgroundDrawable(null);
-    }
-
-    /**
-     * 初始化视图
-     */
-    public void initView() {
-        top_lay = (LinearLayout) findViewById(R.id.top_lay);
-        // 页面中间布局
-        center_lay = (LinearLayout) findViewById(R.id.center_lay);
-        topView = getTopView();// 得到最上面的视图
-        centerView = getCenterView();// 得到中间的视图
-        if (topView != null) {
-            top_lay.setVisibility(View.VISIBLE);
-            top_lay.removeAllViews();
-            top_lay.addView(topView, new ViewPager.LayoutParams());
-
-        } else {
-            top_lay.removeAllViews();
-            top_lay.setVisibility(View.GONE);
+            initToolbar(mToolBar, mToolBarTitle);
+            return;
         }
-        if (centerView != null) {
-            center_lay.removeAllViews();
-            center_lay.addView(centerView, new ViewPager.LayoutParams());
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
+                .LayoutParams.MATCH_PARENT);
+        mParentView.addView(getLayoutInflater().inflate(layoutResID, null), params);
+    }
+
+    @Override
+    public void setContentView(View view) {
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
+                .LayoutParams.MATCH_PARENT);
+        mParentView.addView(view, params);
+    }
+
+    private void initToolbar(Toolbar toolbar, TextView title) {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //当前不是首页时，返回按钮才有效
+                if (!BaseActivity.this.getClass().equals(MainActivity.class))
+                    finish();
+            }
+        });
+
+        if (title != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-
     }
 
-    /**
-     * 设置中间视图
-     *
-     * @param layout
-     */
-    public void setCenterView(int layout) {
-        centerView = LayoutInflater.from(this).inflate(layout, null);
+    protected TextView setmTextRight(String rightText) {
+        mTextRight.setVisibility(View.VISIBLE);
+        mTextRight.setText(rightText);
+        return mTextRight;
     }
 
+    public Toolbar getToolBar() {
+        return mToolBar;
+    }
+
+    public void setBackground(int colorId) {
+        if (null != mParentView) {
+            mParentView.setBackgroundColor(getResources().getColor(colorId));
+        }
+    }
+
+    @Override
+    protected void onTitleChanged(CharSequence title, int color) {
+        super.onTitleChanged(title, color);
+        if (mToolBarTitle != null) {
+            mToolBarTitle.setText(title);
+        }
+    }
+
+
+    //    protected void setTextIcon(String text, View.OnClickListener listener) {
+    //        mTextIcon.setVisibility(View.VISIBLE);
+    //        mTextIcon.setText(text);
+    //        mTextIcon.setOnClickListener(listener);
+    //    }
 }

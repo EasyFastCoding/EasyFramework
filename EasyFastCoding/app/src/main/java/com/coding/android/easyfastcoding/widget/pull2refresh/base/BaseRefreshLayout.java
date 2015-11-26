@@ -16,6 +16,8 @@ import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.coding.android.easyfastcoding.widget.pull2refresh.ScrollingUtil;
+
 import java.lang.reflect.Field;
 
 /**

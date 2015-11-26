@@ -2,12 +2,15 @@ package com.coding.android.easyfastcoding.imageload.glide.demo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.coding.android.easyfastcoding.R;
+import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
 import com.coding.android.easyfastcoding.common.utils.LogUtils;
 import com.coding.android.easyfastcoding.event.EventDemo;
 import com.coding.android.easyfastcoding.imageload.glide.common.GlideImageLoader;
@@ -29,31 +32,81 @@ public class GlideDemoActivity extends BaseActivity {
     Button btStartNetDemo;
     @Bind(R.id.tv_show_event_text)
     TextView tvShowEventText;
-    private String url = "http://b.hiphotos.baidu.com/image/pic/item/b21bb051f81986188ff38b8448ed2e738bd4e67e.jpg";
+    private String url = CommonConfig.IMAGE_URL;
 
     @Override
-    protected View getTopView() {
-        View titleView = getLayoutInflater().inflate(R.layout.view_title, null);
-        initTitleView(titleView);
-        LogUtils.i("获取topView");
-        return titleView;
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
     }
 
     @Override
-    protected View getCenterView() {
-        // 如果需要带toolbar的activity注解不能用Glide自带的，否则。toolbar设置不上去。
-        View centerView = getLayoutInflater().inflate(R.layout.ef_activity_glide, null);
-        ButterKnife.bind(this, centerView);
-        GlideImageLoader.circleImage(this, url, iv);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         init();
+        initView();
         initEvent();
-        return centerView;
     }
+    //    @Override
+//    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+//        super.onCreate(savedInstanceState, persistentState);
+//        System.out.println("11111111111111111111111111");
+//        LogUtils.i("初始化");
+//        init();
+//        initView();
+//        initEvent();
+//    }
 
     private void init() {
         // 注册EventBus
         EventBus.getDefault().register(this);
     }
+
+    private void initView() {
+        initToolbar();
+        LogUtils.i("初始化View");
+        setContentView(R.layout.ef_activity_glide);
+        ButterKnife.bind(this);
+        GlideImageLoader.circleImage(this, url, iv);
+
+    }
+
+    private void initToolbar() {
+        LogUtils.i("初始化Toolbar");
+
+        setTitle(CommonConfig.GLIDE_DEMO_TITLE);
+
+        getToolBar().setNavigationIcon(R.drawable.ef_selector_back_icon);
+
+        getToolBar().setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_right);
+                finish();
+            }
+        });
+    }
+
+//
+//    @Override
+//    protected View getTopView() {
+//        View titleView = getLayoutInflater().inflate(R.layout.view_title, null);
+//        initTitleView(titleView);
+//        LogUtils.i("获取topView");
+//        return titleView;
+//    }
+//
+//    @Override
+//    protected View getCenterView() {
+//        // 如果需要带toolbar的activity注解不能用Glide自带的，否则。toolbar设置不上去。
+//        View centerView = getLayoutInflater().inflate(R.layout.ef_activity_glide, null);
+//        ButterKnife.bind(this, centerView);
+//        GlideImageLoader.circleImage(this, url, iv);
+//        init();
+//        initEvent();
+//        return centerView;
+//    }
+
+
 
     public void onEventMainThread(EventDemo event) {
         String msg = event.getMsg();
@@ -74,10 +127,6 @@ public class GlideDemoActivity extends BaseActivity {
         GlideImageLoader.circleImage(context, imageId, imageView);
     }
 
-    private void initTitleView(View titleView) {
-        TextView tv_title = (TextView) titleView.findViewById(R.id.tv_title);
-        tv_title.setText("Toolbar");
-    }
 
     @Override
     protected void onDestroy() {
