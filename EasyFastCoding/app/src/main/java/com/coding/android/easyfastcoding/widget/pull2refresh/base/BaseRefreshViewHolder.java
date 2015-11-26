@@ -15,9 +15,36 @@ import com.coding.android.easyfastcoding.R;
  * Created by cy on 2015/11/20.
  * <p/>
  * 处理刷新view的类，主要功能：上拉，下拉刷新viwe的显示效果配置，拉动距离设置等等。
- * <p/>
  * 继承这个抽象类实现相应的抽象方法，做出各种下拉刷新，上拉加载效果
+ * <p/>
+ * 上拉加载设置
+ * <br/>
+ * <br/>
+ * 1、BaseRefreshViewHolder中修改上拉加载默认配置的几个方法
+ * <br/>
+ * 1.1、setLoadingMoreText：设置加载更多view的提示文字。
+ * <br/>
+ * 1.2、setLoadingMoreBgColorRes：设置整个加载更多控件的背景颜色资源id
+ * <br/>
+ * 1.3、setmLoadingMoreBgDrawableRes：设置整个加载更多控件的背景图片资源id
+ * <br/>
+ * <br/>
+ * 2.如果不喜欢默认的加载更多view可重写getLoadingMoreView
+ * <p/>
+ * 下拉刷新设置
+ * <br/>
+ * <br/>
+ * 1、BaseRefreshViewHolder中修改下拉加载默认配置的几个方法
+ * <br/>
+ * 1.1、setRefreshBgColorRes：设置下拉刷新背景颜色id
+ * <br/>
+ * 1.2、setRefreshBgDrawableRes：设置下拉刷新背景图片id
+ * <br/>
+ * 1.3、setmTopAnimDuration：刷新完毕后回弹到初始状态的动画时间，默认为500毫秒
+ * <br/>
+ * 1.4、setPullDistanceScale：设置手指移动距离与下拉刷新控件paddingTop移动距离的比值
  */
+
 public abstract class BaseRefreshViewHolder {
 
     /**
@@ -156,7 +183,7 @@ public abstract class BaseRefreshViewHolder {
     /**
      * 进入上拉加载更多状态
      */
-    public void changeToLoadingMore() {
+    public void startLoadingMoreDrawableAnimation() {
         if (mIsLoadingMoreEnabled && mFooterChrysanthemumAd != null) {
             mFooterChrysanthemumAd.start();
         }
@@ -165,7 +192,7 @@ public abstract class BaseRefreshViewHolder {
     /**
      * 结束上拉加载更多
      */
-    public void onEndLoadingMore() {
+    public void stopLoadingMoreDrawableAnimation() {
         if (mIsLoadingMoreEnabled && mFooterChrysanthemumAd != null) {
             mFooterChrysanthemumAd.stop();
         }

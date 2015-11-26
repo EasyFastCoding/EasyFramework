@@ -22,7 +22,7 @@ import java.lang.reflect.Field;
 
 /**
  * 下拉刷新、上拉加载更多、可添加自定义（固定、可滑动）头部控件（例如:app顶部的广告位）
- *
+ * <p/>
  * 该view主要处理下拉，上拉手势事件，下拉及回弹等等。
  * Created by cy on 2015/11/20.
  */
@@ -500,7 +500,7 @@ public class BaseRefreshLayout extends LinearLayout {
             mRefreshHeaderView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
             mRefreshHeaderViewHeight = mRefreshViewHolder.getRefreshHeaderViewHeight();
-            
+
             mMinWholeHeaderViewPaddingTop = -mRefreshHeaderViewHeight;
             mMaxWholeHeaderViewPaddingTop = (int) (mRefreshHeaderViewHeight * mRefreshViewHolder.getSpringDistanceScale());
 
@@ -714,7 +714,7 @@ public class BaseRefreshLayout extends LinearLayout {
      * 显示上拉加载更多控件
      */
     private void showLoadingMoreView() {
-        mRefreshViewHolder.changeToLoadingMore();
+        mRefreshViewHolder.startLoadingMoreDrawableAnimation();
         mLoadMoreFooterView.setVisibility(VISIBLE);
 
         ScrollingUtil.scrollToBottom(mScrollView);
@@ -878,7 +878,7 @@ public class BaseRefreshLayout extends LinearLayout {
         @Override
         public void run() {
             mIsLoadingMore = false;
-            mRefreshViewHolder.onEndLoadingMore();
+            mRefreshViewHolder.stopLoadingMoreDrawableAnimation();
             mLoadMoreFooterView.setVisibility(GONE);
         }
     };
