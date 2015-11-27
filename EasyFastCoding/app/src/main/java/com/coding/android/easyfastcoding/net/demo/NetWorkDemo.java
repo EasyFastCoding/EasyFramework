@@ -148,12 +148,15 @@ public class NetWorkDemo extends BaseActivity implements View.OnClickListener {
                             }
                         });
                 break;
-            case R.id.btn4:    //  待添加 (Pull2RefreashScrollView)
+            case R.id.btn4:    //  TODO  Volley 自带 imageLoader
+                VolleyHelper.getInstance(UIUtils.getContext()).requestNetWorkImageView(niv, R.mipmap.net_defaul, R
+                        .mipmap.net_error, CommonConfig.IMAGE_URL);
+                break;
+            case R.id.btn5:
+
+                //  待添加 (Pull2RefreashScrollView)
                 Intent intent = new Intent(NetWorkDemo.this, Pull2RefreashScrollViewDemoActivity.class);
                 startActivity(intent);
-
-                break;
-            case R.id.btn5:    //  待添加
 
                 break;
             case R.id.btn6:    //  TODO  自定义请求GsonRequest
@@ -178,5 +181,6 @@ public class NetWorkDemo extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
 
 }

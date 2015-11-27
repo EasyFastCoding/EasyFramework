@@ -11,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.coding.android.easyfastcoding.common.utils.LogUtils;
@@ -113,6 +114,19 @@ public class VolleyHelper {
     public ImageLoader.ImageCache getImageCache() {
         return mImageCache;
     }
+
+    /**
+     *   请求网络图片 ，带缓存
+     */
+    public void requestNetWorkImageView(NetworkImageView niv , int defaul_image_res_id , int error_image_res_id , String url) {
+        niv.setDefaultImageResId(defaul_image_res_id);// 默认图片
+        niv.setErrorImageResId(error_image_res_id);// 出错时候显示的图片
+        ImageLoader.ImageCache imageCache = new MyImageCache();
+        // ImageLoader imageLoader = new ImageLoader(请求队列, 自定义缓存);
+        ImageLoader imageLoader = new ImageLoader(getRequestQueue(), imageCache);
+        niv.setImageUrl(url, imageLoader);
+    }
+
     //  --------------------------------------  四大网络请求 -----------------------------begin
 
     /**

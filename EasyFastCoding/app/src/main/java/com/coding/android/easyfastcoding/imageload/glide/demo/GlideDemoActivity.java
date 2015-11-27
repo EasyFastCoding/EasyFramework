@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
-import com.coding.android.easyfastcoding.common.utils.LogUtils;
 import com.coding.android.easyfastcoding.event.EventDemo;
 import com.coding.android.easyfastcoding.imageload.glide.common.GlideImageLoader;
 import com.coding.android.easyfastcoding.net.demo.NetWorkDemo;
@@ -69,28 +68,6 @@ public class GlideDemoActivity extends BaseActivity {
             }
         });
     }
-
-//
-//    @Override
-//    protected View getTopView() {
-//        View titleView = getLayoutInflater().inflate(R.layout.view_title, null);
-//        initTitleView(titleView);
-//        LogUtils.i("获取topView");
-//        return titleView;
-//    }
-//
-//    @Override
-//    protected View getCenterView() {
-//        // 如果需要带toolbar的activity注解不能用Glide自带的，否则。toolbar设置不上去。
-//        View centerView = getLayoutInflater().inflate(R.layout.ef_activity_glide, null);
-//        ButterKnife.bind(this, centerView);
-//        GlideImageLoader.circleImage(this, url, iv);
-//        init();
-//        initEvent();
-//        return centerView;
-//    }
-
-
 
     public void onEventMainThread(EventDemo event) {
         String msg = event.getMsg();

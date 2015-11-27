@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.coding.android.easyfastcoding.common.utils.LogUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/18.
@@ -32,11 +33,13 @@ public class MyImageCache implements ImageLoader.ImageCache {
 
     @Override
     public Bitmap getBitmap(String url) {// 取图片
+        LogUtils.i("去图片");
         return mLruCache.get(url);
     }
 
     @Override
     public void putBitmap(String url, Bitmap bitmap) {// 存图片
+        LogUtils.i("存图片");
         mLruCache.put(url, bitmap);
     }
 
