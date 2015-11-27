@@ -22,9 +22,27 @@ import java.lang.reflect.Field;
 
 /**
  * 下拉刷新、上拉加载更多、可添加自定义（固定、可滑动）头部控件（例如:app顶部的广告位）
- * <p/>
+ * <p>
  * 该view主要处理下拉，上拉手势事件，下拉及回弹等等。
  * Created by cy on 2015/11/20.
+ * <p>
+ * 提供外部调用的方法
+ * <br/>
+ * 1、setIsShowLoadingMoreView：上拉到底部时，是否显示上拉记载更多view，默认为true
+ * <br/>
+ * 2、setDelegate：提供给外部刷新回调的代理类（必须）
+ * <br/>
+ * 3、setRefreshViewHolder：设置refreshViewHolder（必须）
+ * <br/>
+ * 4、setCustomHeaderView：设置下拉刷新控件下方的自定义控件
+ * <br/>
+ * 5、endRefreshing：结束下拉刷新（刷新完调用）
+ * <br/>
+ * 6、endLoadingMore：结束上拉加载更多（刷新完调用）
+ * <br/>
+ * 7、beginLoadingMore：开始上拉加载更多，会触发delegate的onRefreshLayoutBeginRefreshing方法
+ * <br/>
+ * 8、beginRefreshing：切换到正在刷新状态，会调用delegate的onBGARefreshLayoutBeginRefreshing方法
  */
 public class BaseRefreshLayout extends LinearLayout {
 
@@ -737,6 +755,11 @@ public class BaseRefreshLayout extends LinearLayout {
         mIsShowLoadingMoreView = isShowLoadingMoreView;
     }
 
+    /**
+     * 提供给外部刷新回调的代理类
+     *
+     * @param delegate
+     */
     public void setDelegate(RefreshLayoutDelegate delegate) {
         mDelegate = delegate;
     }
@@ -857,6 +880,18 @@ public class BaseRefreshLayout extends LinearLayout {
             changeRefreshHeaderViewToZero();
             handleRefreshStatusChanged();
             mDelegate.onRefreshLayoutBeginRefreshing(this);
+        }
+    }
+
+    /**
+     * 结束下拉刷新
+     */
+    public void endRefreshing() {
+        if (mCurrentRefreshStatus == RefreshStatus.REFRESHING) {
+            mCurrentRefreshStatus = RefreshStatus.IDLE;
+            hiddenRefreshHeaderView();
+            handleRefreshStatusChanged();
+            mRefreshViewHolder.onEndRefreshing();
         }
     }
 

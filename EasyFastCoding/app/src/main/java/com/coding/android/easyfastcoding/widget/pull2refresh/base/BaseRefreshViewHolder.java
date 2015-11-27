@@ -13,10 +13,10 @@ import com.coding.android.easyfastcoding.R;
 
 /**
  * Created by cy on 2015/11/20.
- * <p/>
+ * <p>
  * 处理刷新view的类，主要功能：上拉，下拉刷新viwe的显示效果配置，拉动距离设置等等。
  * 继承这个抽象类实现相应的抽象方法，做出各种下拉刷新，上拉加载效果
- * <p/>
+ * <p>
  * 上拉加载设置
  * <br/>
  * <br/>
@@ -30,7 +30,7 @@ import com.coding.android.easyfastcoding.R;
  * <br/>
  * <br/>
  * 2.如果不喜欢默认的加载更多view可重写getLoadingMoreView
- * <p/>
+ * <p>
  * 下拉刷新设置
  * <br/>
  * <br/>
@@ -42,8 +42,28 @@ import com.coding.android.easyfastcoding.R;
  * <br/>
  * 1.3、setmTopAnimDuration：刷新完毕后回弹到初始状态的动画时间，默认为500毫秒
  * <br/>
- * 1.4、setPullDistanceScale：设置手指移动距离与下拉刷新控件paddingTop移动距离的比值
+ * 1.4、setPullDistanceScale：设置手指移动距离与下拉刷新控件paddingTop移动距离的比值，默认1.8
+ * <br/>
+ * 1.5、setSpringDistanceScale：下拉刷新弹簧的距离和下拉刷新控件高度的比值
+ * <p>
+ * 抽象方法
+ * <br/>
+ * <br/>
+ * 1、getRefreshView：获取头部下拉刷新控件
+ * <br/>
+ * 2、handleScale：下拉刷新控件可见时，处理上下拉进度
+ * <br/>
+ * 3、changeToIdle：进入到未处理下拉刷新状态
+ * <br/>
+ * 4、changeToPullDown：进入下拉状态
+ * <br/>
+ * 5、changeToReleaseRefresh：进入释放刷新状态
+ * <br/>
+ * 6、changeToRefreshing：进入正在刷新状态
+ * <br/>
+ * 7、onEndRefreshing：结束下拉刷新
  */
+
 
 public abstract class BaseRefreshViewHolder {
 

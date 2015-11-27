@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.coding.android.easyfastcoding.widget.pull2refresh.custom.AnimationRefreshView
+        android:id="@+id/anim_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/anim_refresh_header_marginBottom"
+        android:layout_marginTop="@dimen/anim_refresh_header_marginTop">
+
+        <ImageView
+            android:id="@+id/iv_anim_pulldown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/iv_anim_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+
+    </com.coding.android.easyfastcoding.widget.pull2refresh.custom.AnimationRefreshView>
+
+</LinearLayout>
