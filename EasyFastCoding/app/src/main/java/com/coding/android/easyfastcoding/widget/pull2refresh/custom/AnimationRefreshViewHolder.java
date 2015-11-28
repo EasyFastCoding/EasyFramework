@@ -11,6 +11,16 @@ import com.coding.android.easyfastcoding.widget.pull2refresh.base.BaseRefreshVie
 
 /**
  * Created by cy on 2015/11/26.
+ * <p/>
+ * 刷新动画
+ * <p/>
+ * 几个必须调用的设置方法
+ * <br/>
+ * 1、setPullDownImageResource：设置下拉过程中的图片
+ * <br/>
+ * 2、setChangeToReleaseRefreshAnimResId：设置进入释放刷新状态时的动画
+ * <br/>
+ * 3、setRefreshAnimResId：设置正在刷星是的动画
  */
 public class AnimationRefreshViewHolder extends BaseRefreshViewHolder {
 
@@ -70,17 +80,17 @@ public class AnimationRefreshViewHolder extends BaseRefreshViewHolder {
             if (mPullDownImageResId != -1) {
                 mAnimationRefreshView.setPullDownImageResource(mPullDownImageResId);
             } else {
-                throw new RuntimeException("请调用" + AnimationRefreshView.class.getSimpleName() + "的setPullDownImageResource方法设置下拉过程中的图片资源");
+                throw new RuntimeException("请调用" + AnimationRefreshViewHolder.class.getSimpleName() + "的setPullDownImageResource方法设置下拉过程中的图片资源");
             }
             if (mChangeToReleaseRefreshAnimResId != -1) {
                 mAnimationRefreshView.setChangeToReleaseAnimResId(mChangeToReleaseRefreshAnimResId);
             } else {
-                throw new RuntimeException("请调用" + AnimationRefreshView.class.getSimpleName() + "的setChangeToReleaseRefreshAnimResId方法设置进入释放刷新状态时的动画资源");
+                throw new RuntimeException("请调用" + AnimationRefreshViewHolder.class.getSimpleName() + "的setChangeToReleaseRefreshAnimResId方法设置进入释放刷新状态时的动画资源");
             }
             if (mRefreshingAnimResId != -1) {
                 mAnimationRefreshView.setRefreshAnimResId(mRefreshingAnimResId);
             } else {
-                throw new RuntimeException("请调用" + AnimationRefreshView.class.getSimpleName() + "的setRefreshingAnimResId方法设置正在刷新时的动画资源");
+                throw new RuntimeException("请调用" + AnimationRefreshViewHolder.class.getSimpleName() + "的setRefreshingAnimResId方法设置正在刷新时的动画资源");
             }
         }
         return mRefreshView;
