@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,15 +74,13 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
         return 2;
     }
 
-    public int test(int position) {
-        return position >= data.size() ? 0 : mMultiItemSupport.getItemViewType(position, data.get(position));
-    }
 
     @Override
     public int getItemViewType(int position) {
-        if (data.size() == 0)
-            return 0;
-        return mMultiItemSupport.getItemViewType(position, data.get(position));
+        if (mMultiItemSupport != null)
+            return mMultiItemSupport.getItemViewType(position, data.get(position));
+
+        return data.size() == 0 ? 0 : 1;
     }
 
     /**
@@ -97,7 +96,12 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
 
         // 显示没有数据的view
         if (getItemViewType(position) == 0) {
-            return createNoDataView();
+            View noDataView = null;
+            noDataView = createNoDataView();
+            if (noDataView == null) {
+                noDataView = new FrameLayout(context);
+            }
+            return noDataView;
         }
         //创建一个helper类，相当于viewholder
         final H helper = getAdapterHelper(position, convertView, parent);

@@ -28,10 +28,6 @@ public abstract class QuickAdapter<T> extends BaseQuickAdapter<T, BaseAdapterHel
         super(context, data, multiItemTypeSupport);
     }
 
-    @Override
-    public View createNoDataView() {
-        return null;
-    }
 
     @Override
     protected BaseAdapterHelper getAdapterHelper(int position, View convertView, ViewGroup parent) {
