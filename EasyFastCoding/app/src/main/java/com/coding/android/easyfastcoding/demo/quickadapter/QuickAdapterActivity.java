@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.coding.android.easyfastcoding.R;
+import com.coding.android.easyfastcoding.datafactory.model.QuickBean;
 
 import java.util.List;
 

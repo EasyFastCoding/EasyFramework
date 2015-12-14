@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.demo.quickadapter;
+package com.coding.android.easyfastcoding.datafactory.model;
 
 /**
  * Created by cy on 2015/11/30.
