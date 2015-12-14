@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.view.module;
+package easyfastcode.library.module;
 
 import android.view.View;
 

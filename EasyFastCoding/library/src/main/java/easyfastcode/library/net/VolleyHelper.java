@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.net;
+package easyfastcode.library.net;
 
 import android.content.Context;
 import android.webkit.WebView;
@@ -14,10 +14,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import easyfastcode.library.utils.LogUtils;
-import easyfastcode.library.utils.UIUtils;
-import com.coding.android.easyfastcoding.net.request.BaseRequest;
-import com.coding.android.easyfastcoding.net.request.GsonRequest;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -25,6 +21,11 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import easyfastcode.library.net.request.BaseRequest;
+import easyfastcode.library.net.request.GsonRequest;
+import easyfastcode.library.utils.LogUtils;
+import easyfastcode.library.utils.UIUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/11.

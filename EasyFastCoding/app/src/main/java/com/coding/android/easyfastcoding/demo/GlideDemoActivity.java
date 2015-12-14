@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
 import com.coding.android.easyfastcoding.event.EventDemo;
-import com.coding.android.easyfastcoding.net.demo.NetWorkDemo;
+import com.coding.android.easyfastcoding.demo.net.demo.NetWorkDemo;
 import com.coding.android.easyfastcoding.view.activity.BaseActivity;
 
 import butterknife.Bind;

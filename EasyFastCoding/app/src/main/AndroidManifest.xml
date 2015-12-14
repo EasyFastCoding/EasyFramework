@@ -17,7 +17,7 @@
 
         </activity>
         <activity
-            android:name=".net.demo.NetWorkDemo"
+            android:name=".demo.net.demo.NetWorkDemo"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".widget.pull2refresh.demo.Pull2RefreashScrollViewDemoActivity"

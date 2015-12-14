@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.net.bean;
+package com.coding.android.easyfastcoding.demo.net.bean;
 
 /**
  * Created by 杨强彪 on 2015/11/19.

@@ -1,28 +1,25 @@
-package com.coding.android.easyfastcoding.net.demo;
+package com.coding.android.easyfastcoding.demo.net.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import com.android.volley.toolbox.NetworkImageView;
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
-import easyfastcode.library.utils.LogUtils;
-import easyfastcode.library.utils.UIUtils;
+import com.coding.android.easyfastcoding.demo.net.bean.DemoBean;
 import com.coding.android.easyfastcoding.event.EventDemo;
-import com.coding.android.easyfastcoding.net.VolleyHelper;
-import com.coding.android.easyfastcoding.net.bean.DemoBean;
-import com.coding.android.easyfastcoding.net.request.DemoRequest;
 import com.coding.android.easyfastcoding.view.activity.BaseActivity;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import easyfastcode.library.net.VolleyHelper;
+import easyfastcode.library.net.request.DemoRequest;
+import easyfastcode.library.utils.LogUtils;
+import easyfastcode.library.utils.UIUtils;
 import easyfastcode.library.widget.pull2refresh.demo.Pull2RefreashScrollViewDemoActivity;
 
 /**

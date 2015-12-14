@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.net.request;
+package easyfastcode.library.net.request;
 
 import android.os.Parcel;
 import android.os.Parcelable;

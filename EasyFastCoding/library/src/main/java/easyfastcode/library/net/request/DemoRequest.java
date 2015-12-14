@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.net.request;
+package easyfastcode.library.net.request;
 
 /**
  * Created by 杨强彪 on 2015/11/19.
