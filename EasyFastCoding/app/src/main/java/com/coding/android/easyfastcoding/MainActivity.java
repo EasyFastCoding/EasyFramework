@@ -6,12 +6,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
 import com.coding.android.easyfastcoding.view.activity.BaseActivity;
 import com.coding.android.easyfastcoding.view.adapter.FragmentTabAdapter;
 import com.coding.android.easyfastcoding.view.fragment.ChatFragment;
 import com.coding.android.easyfastcoding.view.fragment.ContactFragment;
 import com.coding.android.easyfastcoding.view.fragment.FriendFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         initControls();
         fragmentChange();
     }
+
     private void initToolbar() {
         setTitle(CommonConfig.GLIDE_DEMO_TITLE);
 
@@ -45,6 +48,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             }
         });
     }
+
     private void initControls() {
 
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
@@ -103,7 +107,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(vp_pager != null){
+        if (vp_pager != null) {
             vp_pager.removeOnPageChangeListener(this);
         }
     }
