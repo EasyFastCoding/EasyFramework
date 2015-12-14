@@ -9,14 +9,13 @@ import android.widget.ImageView;
 import com.android.volley.toolbox.NetworkImageView;
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
-import com.coding.android.easyfastcoding.common.utils.LogUtils;
-import com.coding.android.easyfastcoding.common.utils.UIUtils;
+import easyfastcode.library.utils.LogUtils;
+import easyfastcode.library.utils.UIUtils;
 import com.coding.android.easyfastcoding.event.EventDemo;
 import com.coding.android.easyfastcoding.net.VolleyHelper;
 import com.coding.android.easyfastcoding.net.bean.DemoBean;
 import com.coding.android.easyfastcoding.net.request.DemoRequest;
 import com.coding.android.easyfastcoding.view.activity.BaseActivity;
-import com.coding.android.easyfastcoding.widget.pull2refresh.demo.Pull2RefreashScrollViewDemoActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,6 +23,7 @@ import org.json.JSONObject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import easyfastcode.library.widget.pull2refresh.demo.Pull2RefreashScrollViewDemoActivity;
 
 /**
  * Created by 杨强彪 on 2015/11/19.

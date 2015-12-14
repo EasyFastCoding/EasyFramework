@@ -1,6 +1,6 @@
 package com.coding.android.easyfastcoding.common.configuration;
 
-import com.coding.android.easyfastcoding.common.utils.FileUtils;
+import easyfastcode.library.utils.FileUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/10.

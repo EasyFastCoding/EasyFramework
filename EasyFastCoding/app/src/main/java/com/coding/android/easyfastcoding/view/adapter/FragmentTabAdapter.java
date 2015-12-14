@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.coding.android.easyfastcoding.R;
-import com.coding.android.easyfastcoding.common.utils.LogUtils;
+import easyfastcode.library.utils.LogUtils;
 
 import java.util.List;
 

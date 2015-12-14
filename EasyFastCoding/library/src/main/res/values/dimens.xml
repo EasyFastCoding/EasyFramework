@@ -1,0 +1,11 @@
+<resources>
+
+    <!--下拉刷新的尺寸配置___start___-->
+
+    <dimen name="anim_refresh_header_marginTop">5dp</dimen>
+    <dimen name="anim_refresh_header_marginBottom">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--下拉刷新的尺寸配置___end___-->
+
+</resources>

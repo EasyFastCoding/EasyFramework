@@ -13,9 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        //加入renderscript：glide的BlurTransform有用到
-        renderscriptTargetApi 23
-        renderscriptSupportModeEnabled true
+
     }
     buildTypes {
         release {
@@ -26,23 +24,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    //加入图片加载库glide
-    compile "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
-    compile "jp.co.cyberagent.android.gpuimage:gpuimage-library:${GPUIMAGE_VERSION}"
     //官方支持库
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
     // 以下三个库是必须依赖的
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.google.code.gson:gson:2.4'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.jakewharton:butterknife:7.0.1'
-    
-    compile 'com.nineoldandroids:library:2.4.0'
     compile 'cn.bingoogolapple:bga-refreshlayout:1.1.1@aar'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
 
+    compile 'com.android.support:design:23.1.1'
+    compile project(':library')
 }
