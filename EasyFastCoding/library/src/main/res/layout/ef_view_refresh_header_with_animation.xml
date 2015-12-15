@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.coding.android.easyfastcoding.widget.pull2refresh.custom.AnimationRefreshView
+    <easyfastcode.library.widget.pull2refresh.custom.AnimationRefreshView
         android:id="@+id/anim_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="invisible" />
-
-    </com.coding.android.easyfastcoding.widget.pull2refresh.custom.AnimationRefreshView>
+    </easyfastcode.library.widget.pull2refresh.custom.AnimationRefreshView>
 
 </LinearLayout>

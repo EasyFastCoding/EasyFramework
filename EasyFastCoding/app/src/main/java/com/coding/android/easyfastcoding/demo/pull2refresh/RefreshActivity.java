@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.coding.android.easyfastcoding.R;
-import com.coding.android.easyfastcoding.demo.pull2refresh.fragment.ListViewRefreshFragment;
+import com.coding.android.easyfastcoding.demo.pull2refresh.fragment.NormalRefreshFragment;
 import com.coding.android.easyfastcoding.view.activity.BaseActivity;
 
 /**
@@ -23,7 +23,7 @@ public class RefreshActivity extends BaseActivity {
     private void initView() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_container, ListViewRefreshFragment.initFragment());
+        fragmentTransaction.replace(R.id.fl_container, NormalRefreshFragment.initFragment());
         fragmentTransaction.commit();
     }
 

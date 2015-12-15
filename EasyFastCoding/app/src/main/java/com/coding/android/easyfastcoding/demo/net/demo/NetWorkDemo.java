@@ -20,7 +20,6 @@ import easyfastcode.library.net.VolleyHelper;
 import easyfastcode.library.net.request.DemoRequest;
 import easyfastcode.library.utils.LogUtils;
 import easyfastcode.library.utils.UIUtils;
-import easyfastcode.library.widget.pull2refresh.demo.Pull2RefreashScrollViewDemoActivity;
 
 /**
  * Created by 杨强彪 on 2015/11/19.
@@ -152,8 +151,6 @@ public class NetWorkDemo extends BaseActivity implements View.OnClickListener {
             case R.id.btn5:
 
                 //  待添加 (Pull2RefreashScrollView)
-                Intent intent = new Intent(NetWorkDemo.this, Pull2RefreashScrollViewDemoActivity.class);
-                startActivity(intent);
 
                 break;
             case R.id.btn6:    //  TODO  自定义请求GsonRequest

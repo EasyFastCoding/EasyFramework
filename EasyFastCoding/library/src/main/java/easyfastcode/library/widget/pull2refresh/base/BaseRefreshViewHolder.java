@@ -179,7 +179,7 @@ public abstract class BaseRefreshViewHolder {
      * 获取上拉加载更多控件，如果不喜欢这种上拉刷新风格可重写该方法实现自定义LoadMoreFooterView
      */
     public View getLoadingMoreView() {
-        if (mIsLoadingMoreEnabled) {
+        if (!mIsLoadingMoreEnabled) {
             return null;
         }
         if (mLoadingMoreView == null) {

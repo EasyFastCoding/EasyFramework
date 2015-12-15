@@ -166,11 +166,6 @@ public class BaseRefreshLayout extends LinearLayout {
         boolean onRefreshLayoutBeginLoadingMore(BaseRefreshLayout baseRefreshLayout);
     }
 
-    /**
-     * 整个头部控件，下拉刷新控件mRefreshHeaderView和下拉刷新控件下方的自定义组件mCustomHeaderView的父控件
-     */
-    private LinearLayout mHeaderContainer;
-
     private Handler mHandler;
 
     public BaseRefreshLayout(Context context) {
@@ -184,14 +179,16 @@ public class BaseRefreshLayout extends LinearLayout {
         initHeaderContainer();
     }
 
+
+
     /**
      * 为下拉刷新的view，和刷新下面的view提供一个容器
      */
     private void initHeaderContainer() {
-        mHeaderContainer = new LinearLayout(getContext());
-        mHeaderContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        mHeaderContainer.setOrientation(LinearLayout.VERTICAL);
-        addView(mHeaderContainer);
+        mWholeHeaderViewContainer = new LinearLayout(getContext());
+        mWholeHeaderViewContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        mWholeHeaderViewContainer.setOrientation(LinearLayout.VERTICAL);
+        addView(mWholeHeaderViewContainer);
     }
 
     /**

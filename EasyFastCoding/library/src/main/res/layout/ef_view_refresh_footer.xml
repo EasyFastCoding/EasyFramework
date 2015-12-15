@@ -10,7 +10,7 @@
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:layout_marginRight="10dip"
-        android:src="@anim/ef_bga_loading_more"/>
+        android:src="@anim/ef_refresh_loading_more"/>
 
     <TextView
         android:id="@+id/tv_normal_refresh_footer_status"

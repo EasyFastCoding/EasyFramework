@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.coding.android.easyfastcoding.R;
+import com.coding.android.easyfastcoding.demo.pull2refresh.fragment.AnimationRefreshFragment;
+import com.coding.android.easyfastcoding.demo.pull2refresh.fragment.NormalRefreshFragment;
 import com.coding.android.easyfastcoding.view.adapter.FragmentChatAdapter;
 import com.coding.android.easyfastcoding.view.fragment.chat.ReadFragment;
 import com.coding.android.easyfastcoding.view.fragment.chat.UnReadFragment;
@@ -57,8 +59,8 @@ public class ChatFragment extends Fragment {
      */
     private void fragmentChange() {
         list_fragment = new ArrayList<>();
-        list_fragment.add(new ReadFragment());
-        list_fragment.add(new UnReadFragment());
+        list_fragment.add(NormalRefreshFragment.initFragment());
+        list_fragment.add(AnimationRefreshFragment.initFragment());
         // 下面这句代码一定要传getChildFragmentManager()，一级FragmentManager管理一级fragment
         // 不能用上一层的（getActivity().getSupportFragmentManager()）否则根本设置不进去
         fAdapter = new FragmentChatAdapter(getChildFragmentManager(), list_fragment, mTextviewArray);
@@ -67,6 +69,7 @@ public class ChatFragment extends Fragment {
         tabLayout.setupWithViewPager(vpPager);
 
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
