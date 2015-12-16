@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.view.fragment.chat;
+package com.coding.android.easyfastcoding.view.fragment.main.contact;
 
 
 import android.os.Bundle;
@@ -18,9 +18,9 @@ import butterknife.ButterKnife;
 /**
  * Created by 杨强彪 on 2015/11/28.
  *
- * @描述：已读信息
+ * @描述：联系人下层fragment
  */
-public class ReadFragment extends Fragment {
+public class ContactChildFragment extends Fragment {
 
     @Bind(R.id.tv_contant)
     TextView tvContant;
@@ -29,7 +29,7 @@ public class ReadFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_read, container, false);
+        View view = inflater.inflate(R.layout.fragment_contact_child, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -40,4 +40,8 @@ public class ReadFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
+    public void setTvContant(String tittle){
+        if(tvContant == null ){return;}
+        tvContant.setText(tittle);
+    }
 }

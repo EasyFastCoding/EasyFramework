@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.view.fragment;
+package com.coding.android.easyfastcoding.view.fragment.main;
 
 
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.view.adapter.FragmentChatAdapter;
-import com.coding.android.easyfastcoding.view.fragment.contact.ContactChildFragment;
+import com.coding.android.easyfastcoding.view.fragment.main.contact.ContactChildFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class ContactFragment extends Fragment implements ViewPager.OnPageChangeL
         // 名称赋值
         mTextviewArray = getResources().getStringArray(R.array.array_contacts);
         // 设置tab可以滚动
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);//android:showDividers="none"
         vpPager.addOnPageChangeListener(this);
 
     }

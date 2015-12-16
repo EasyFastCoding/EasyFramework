@@ -6,6 +6,8 @@
               android:orientation="vertical"
               tools:context=".MainActivity">
 
+    <include layout="@layout/ef_subview_toolbar"/>
+
     <easyfastcode.library.widget.customViewpager.NoScrollViewPager
         android:id="@+id/vp_pager"
         android:layout_width="fill_parent"

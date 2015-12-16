@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.view.fragment;
+package com.coding.android.easyfastcoding.view.fragment.main;
 
 
 import android.os.Bundle;

@@ -10,9 +10,9 @@ import android.view.View;
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
 import com.coding.android.easyfastcoding.view.activity.BaseActivity;
 import com.coding.android.easyfastcoding.view.adapter.FragmentTabAdapter;
-import com.coding.android.easyfastcoding.view.fragment.ChatFragment;
-import com.coding.android.easyfastcoding.view.fragment.ContactFragment;
-import com.coding.android.easyfastcoding.view.fragment.FriendFragment;
+import com.coding.android.easyfastcoding.view.fragment.main.ChatFragment;
+import com.coding.android.easyfastcoding.view.fragment.main.ContactFragment;
+import com.coding.android.easyfastcoding.view.fragment.main.FriendFragment;
 
 import java.util.ArrayList;
 import java.util.List;

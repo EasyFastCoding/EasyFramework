@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.view.fragment.chat;
+package com.coding.android.easyfastcoding.view.fragment.main.chat;
 
 
 import android.os.Bundle;
@@ -18,9 +18,9 @@ import butterknife.ButterKnife;
 /**
  * Created by 杨强彪 on 2015/11/28.
  *
- * @描述：未读信息
+ * @描述：已读信息
  */
-public class UnReadFragment extends Fragment {
+public class ReadFragment extends Fragment {
 
     @Bind(R.id.tv_contant)
     TextView tvContant;
@@ -29,7 +29,7 @@ public class UnReadFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_unread, container, false);
+        View view = inflater.inflate(R.layout.fragment_read, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -39,4 +39,5 @@ public class UnReadFragment extends Fragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
 }

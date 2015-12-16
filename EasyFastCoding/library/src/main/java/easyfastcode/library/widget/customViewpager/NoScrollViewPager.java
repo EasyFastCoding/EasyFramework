@@ -22,7 +22,7 @@ public class NoScrollViewPager extends ViewPager {
 
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent event) {
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
         return false;
     }
 

@@ -1,4 +1,4 @@
-package com.coding.android.easyfastcoding.view.fragment;
+package com.coding.android.easyfastcoding.view.fragment.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,8 +13,8 @@ import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.demo.pull2refresh.fragment.AnimationRefreshFragment;
 import com.coding.android.easyfastcoding.demo.pull2refresh.fragment.NormalRefreshFragment;
 import com.coding.android.easyfastcoding.view.adapter.FragmentChatAdapter;
-import com.coding.android.easyfastcoding.view.fragment.chat.ReadFragment;
-import com.coding.android.easyfastcoding.view.fragment.chat.UnReadFragment;
+import com.coding.android.easyfastcoding.view.fragment.main.chat.ReadFragment;
+import com.coding.android.easyfastcoding.view.fragment.main.chat.UnReadFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
  *
  * @描述：
  */
-public class ChatFragment extends Fragment {
+public class ChatFragment extends Fragment{
 
     @Bind(R.id.tab_layout)
     TabLayout tabLayout;
