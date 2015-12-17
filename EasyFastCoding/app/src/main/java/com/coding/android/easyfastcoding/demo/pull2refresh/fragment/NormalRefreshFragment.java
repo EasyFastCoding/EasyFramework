@@ -18,6 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import easyfastcode.library.widget.adapter.QuickAdapter;
 import easyfastcode.library.widget.adapter.base.BaseAdapterHelper;
+import easyfastcode.library.widget.dialog.Dialogue;
 import easyfastcode.library.widget.pull2refresh.base.BaseRefreshLayout;
 import easyfastcode.library.widget.pull2refresh.custom.NormalRefreshViewHolder;
 
@@ -69,11 +70,13 @@ public class NormalRefreshFragment extends Fragment implements BaseRefreshLayout
 
     @Override
     public void onRefreshLayoutBeginRefreshing(BaseRefreshLayout baseRefreshLayout) {
+        Dialogue.show(getContext());
         mHandler.sendEmptyMessageDelayed(ON_REFRESH, 2000);
     }
 
     @Override
     public boolean onRefreshLayoutBeginLoadingMore(BaseRefreshLayout baseRefreshLayout) {
+        Dialogue.show(getContext());
         mHandler.sendEmptyMessageDelayed(ON_LOADMORE, 2000);
         return true;
     }
@@ -84,6 +87,7 @@ public class NormalRefreshFragment extends Fragment implements BaseRefreshLayout
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            Dialogue.dissmiss(getContext());
             super.handleMessage(msg);
             switch (msg.what) {
                 case ON_REFRESH:

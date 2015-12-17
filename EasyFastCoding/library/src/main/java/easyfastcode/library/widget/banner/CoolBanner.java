@@ -157,7 +157,7 @@ public class CoolBanner extends RelativeLayout {
         mPointLeftRightMargin = dp2px(context, 3);
         mPointTopBottomMargin = dp2px(context, 6);
         mPointContainerLeftRightPadding = dp2px(context, 10);
-        mPointContainerBackgroundDrawable = new ColorDrawable(Color.parseColor("44aaaaaa"));
+        mPointContainerBackgroundDrawable = new ColorDrawable(Color.parseColor("#44aaaaaa"));
 
         mTipTextSize = sp2px(context, 8);
     }

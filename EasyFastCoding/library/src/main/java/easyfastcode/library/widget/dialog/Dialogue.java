@@ -18,7 +18,7 @@ import easyfastcode.library.R;
 
 /**
  * 显示成功，失败，提示，Loading的对话框
- * <p/>
+ * <p>
  * Created by cy on 2015/11/17.
  */
 public class Dialogue {
@@ -29,8 +29,8 @@ public class Dialogue {
     private DialogType mDialogType;
 
     private ViewGroup mDecorView;
-    private ViewGroup mRootView;
     private DialogueView mDialogView;
+    private ViewGroup mRootView;
 
     private Animation inAnim;
     private Animation outAnim;
@@ -255,6 +255,11 @@ public class Dialogue {
     /**
      * =================================提供给外界的静态方法======================================
      */
+
+    public static void dissmiss(Context context){
+        getInstance(context).mDialogView.dismiss();
+        getInstance(context).dismiss();
+    }
 
     /**
      * 显示loading框

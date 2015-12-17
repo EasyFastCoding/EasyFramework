@@ -95,6 +95,7 @@ public class BaseRefreshLayout extends LinearLayout {
      * 上拉加载更多控件
      */
     private View mLoadMoreFooterView;
+    private LayoutParams mLoadMoreLayoutParam;
     /**
      * 上拉加载更多控件的高度
      */
@@ -180,7 +181,6 @@ public class BaseRefreshLayout extends LinearLayout {
     }
 
 
-
     /**
      * 为下拉刷新的view，和刷新下面的view提供一个容器
      */
@@ -235,6 +235,9 @@ public class BaseRefreshLayout extends LinearLayout {
 
             //在初始化的时候addHeaderView,paddingTop值为0。要显示时才addFooterView
             addView(mLoadMoreFooterView, getChildCount());
+            mLoadMoreLayoutParam = (LayoutParams) mLoadMoreFooterView.getLayoutParams();
+            mLoadMoreLayoutParam.bottomMargin = -mLoadMoreFooterViewHeight;
+            mLoadMoreFooterView.setLayoutParams(mLoadMoreLayoutParam);
             mIsInitedContentViewScrollListener = true;
         }
     }
@@ -534,7 +537,7 @@ public class BaseRefreshLayout extends LinearLayout {
             // 测量上拉加载更多控件的高度
             mLoadMoreFooterView.measure(0, 0);
             mLoadMoreFooterViewHeight = mLoadMoreFooterView.getMeasuredHeight();
-            mLoadMoreFooterView.setVisibility(GONE);
+//            mLoadMoreFooterView.setVisibility(GONE);
         }
     }
 
@@ -730,12 +733,28 @@ public class BaseRefreshLayout extends LinearLayout {
      * 显示上拉加载更多控件
      */
     private void showLoadingMoreView() {
-        mRefreshViewHolder.startLoadingMoreDrawableAnimation();
         mLoadMoreFooterView.setVisibility(VISIBLE);
 
-        ScrollingUtil.scrollToBottom(mScrollView);
-        ScrollingUtil.scrollToBottom(mRecyclerView);
-        ScrollingUtil.scrollToBottom(mAbsListView);
+        mRefreshViewHolder.startLoadingMoreDrawableAnimation();
+        ValueAnimator animator = ValueAnimator.ofInt(mLoadMoreFooterViewHeight, 0);
+        animator.setDuration(100);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                int marginBottom = (int) valueAnimator.getAnimatedValue();
+                LayoutParams params = (LayoutParams) mLoadMoreFooterView.getLayoutParams();
+                params.bottomMargin = -marginBottom;
+                mLoadMoreFooterView.setLayoutParams(params);
+
+                ScrollingUtil.scrollToBottom(mScrollView);
+                ScrollingUtil.scrollToBottom(mRecyclerView);
+                ScrollingUtil.scrollToBottom(mAbsListView);
+            }
+        });
+        animator.start();
+
+
         //TODO
 //        if (mStickyNavLayout != null) {
 //            mStickyNavLayout.scrollToBottom();

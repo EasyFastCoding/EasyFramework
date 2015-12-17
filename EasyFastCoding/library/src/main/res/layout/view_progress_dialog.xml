@@ -29,7 +29,8 @@
             android:scaleType="centerInside"
             android:visibility="gone" />
 
-        <com.coding.android.easyfastcoding.widget.dialog.CircleProgressBar
+
+        <easyfastcode.library.widget.dialog.CircleProgressBar
             android:id="@+id/circle_progress_bar"
             android:layout_width="60dp"
             android:layout_height="60dp"
