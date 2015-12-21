@@ -1,12 +1,12 @@
-package easyfastcode.library.utils;
+package easyfastcode.library.utils.other;
 
 import android.text.TextUtils;
 import android.util.Log;
 
-
 import java.util.List;
 
-import easyfastcode.library.configurations.CommonConfig;
+import easyfastcode.library.configuration.CommonConfig;
+import easyfastcode.library.utils.UI.UIUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/10.

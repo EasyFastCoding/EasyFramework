@@ -4,8 +4,8 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import easyfastcode.library.utils.other.LogUtils;
 
-import easyfastcode.library.utils.LogUtils;
 
 /**
  * Created by 杨强彪 on 2015/12/15.

@@ -1,6 +1,5 @@
-package easyfastcode.library.configurations;
-
-import easyfastcode.library.utils.FileUtils;
+package easyfastcode.library.configuration;
+import easyfastcode.library.utils.other.FileUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/10.

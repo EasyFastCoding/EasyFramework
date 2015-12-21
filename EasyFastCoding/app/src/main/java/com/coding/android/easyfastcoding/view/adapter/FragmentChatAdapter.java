@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.coding.android.easyfastcoding.demo.banner.BannerFragment;
+import com.coding.android.easyfastcoding.demo.newparts.CoordinatorLayoutFragmentDemo1;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class FragmentChatAdapter extends FragmentPagerAdapter {
     private List<Fragment> list_fragment;   //fragment列表
-    private String[] array_Title;        //tab名的列表
+    private String[] array_Title;           //tab名的列表
 
     public FragmentChatAdapter(FragmentManager fm, List<Fragment> list_fragment, String[] array_Title) {
 
@@ -28,7 +29,9 @@ public class FragmentChatAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         if (position == 2) {
             return BannerFragment.initFragment();
-        } else {
+        } else if (position == 3) {
+            return new CoordinatorLayoutFragmentDemo1();
+        } else{
             return list_fragment.get(position);
         }
     }

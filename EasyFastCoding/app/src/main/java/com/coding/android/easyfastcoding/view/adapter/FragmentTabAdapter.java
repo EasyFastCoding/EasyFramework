@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.coding.android.easyfastcoding.R;
-import easyfastcode.library.utils.LogUtils;
-
 import java.util.List;
+import easyfastcode.library.utils.other.LogUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/28.

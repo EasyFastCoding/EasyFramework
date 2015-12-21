@@ -2,7 +2,6 @@ package easyfastcode.library.net;
 
 import android.content.Context;
 import android.webkit.WebView;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,17 +14,14 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import easyfastcode.library.net.request.BaseRequest;
 import easyfastcode.library.net.request.GsonRequest;
-import easyfastcode.library.utils.LogUtils;
-import easyfastcode.library.utils.UIUtils;
+import easyfastcode.library.utils.other.LogUtils;
+import easyfastcode.library.utils.UI.UIUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/11.

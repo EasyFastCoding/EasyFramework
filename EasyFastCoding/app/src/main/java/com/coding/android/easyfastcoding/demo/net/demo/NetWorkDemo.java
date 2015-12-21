@@ -1,10 +1,10 @@
 package com.coding.android.easyfastcoding.demo.net.demo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
 import com.android.volley.toolbox.NetworkImageView;
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
@@ -18,8 +18,8 @@ import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import easyfastcode.library.net.VolleyHelper;
 import easyfastcode.library.net.request.DemoRequest;
-import easyfastcode.library.utils.LogUtils;
-import easyfastcode.library.utils.UIUtils;
+import easyfastcode.library.utils.other.LogUtils;
+import easyfastcode.library.utils.UI.UIUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/19.

@@ -1,4 +1,4 @@
-package easyfastcode.library.utils;
+package easyfastcode.library.utils.UI;
 
 import android.content.Context;
 import android.content.res.Resources;

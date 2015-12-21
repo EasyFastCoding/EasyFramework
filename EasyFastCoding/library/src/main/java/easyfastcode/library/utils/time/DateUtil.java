@@ -1,4 +1,4 @@
-package easyfastcode.library.utils;
+package easyfastcode.library.utils.time;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -41,7 +41,7 @@ public class DateUtil {
      * @param format  日期格式
      * @return 日期类型
      */
-    public synchronized static java.util.Date stringtoDate(String dateStr, String format) {
+    public synchronized static Date stringtoDate(String dateStr, String format) {
         Date d = null;
         SimpleDateFormat formater = new SimpleDateFormat(format);
         try {

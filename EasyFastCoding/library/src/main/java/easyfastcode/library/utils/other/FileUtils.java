@@ -1,4 +1,4 @@
-package easyfastcode.library.utils;
+package easyfastcode.library.utils.other;
 
 import android.os.Environment;
 
@@ -12,6 +12,9 @@ import java.io.RandomAccessFile;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
+import easyfastcode.library.utils.UI.StringUtils;
+import easyfastcode.library.utils.UI.UIUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/10.

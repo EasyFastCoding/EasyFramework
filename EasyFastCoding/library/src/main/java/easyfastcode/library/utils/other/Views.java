@@ -1,4 +1,4 @@
-package easyfastcode.library.utils;
+package easyfastcode.library.utils.other;
 
 import android.app.Activity;
 import android.content.Context;

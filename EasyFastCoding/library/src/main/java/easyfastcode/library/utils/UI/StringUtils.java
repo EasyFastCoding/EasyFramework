@@ -1,6 +1,10 @@
-package easyfastcode.library.utils;
+package easyfastcode.library.utils.UI;
 
-import android.text.*;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 
@@ -13,6 +17,25 @@ import java.text.DecimalFormat;
  */
 public class StringUtils {
     public final static String UTF_8 = "utf-8";
+
+    /**
+     * 对给定的字符串返回唯一的标记字符串<br>
+     * 主要应用于网络url的标记，将url转换映射成唯一的标识字符串<br>
+     * 写法参考Volley中的写法<br>
+     *
+     * @param str 需要转换的字符串
+     * @return 返回唯一的标识
+     */
+    public static String toHash(String str) {
+        String ret = null;
+        if (str != null && str.length() > 0) {
+            int len = str.length();
+            String part1 = str.substring(0, len / 2).hashCode() + "";
+            String part2 = str.substring(len / 2).hashCode() + "";
+            ret = part1 + part2;
+        }
+        return ret;
+    }
 
     /**
      * 判断字符串是否有值，如果为null或者是空字符串或者只有空格或者为"null"字符串，则返回true，否则则返回false

@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+
+import easyfastcode.library.utils.sp.SpCache;
+
 /**
  * Created by 杨强彪 on 2015/11/10.
  *
@@ -34,6 +37,9 @@ public class BaseApplication extends Application
 		mLooper = getMainLooper();
 
 		mMainHandler = new Handler();
+
+		// 初始化SpCache,没在这初始化用SpCache就会报异常
+		SpCache.init(this);
 
 	}
 

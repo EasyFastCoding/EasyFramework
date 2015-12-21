@@ -2,9 +2,8 @@ package easyfastcode.library.net;
 
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
-
 import com.android.volley.toolbox.ImageLoader;
-import easyfastcode.library.utils.LogUtils;
+import easyfastcode.library.utils.other.LogUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/18.

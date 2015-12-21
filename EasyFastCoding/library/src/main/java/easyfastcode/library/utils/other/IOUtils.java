@@ -1,4 +1,4 @@
-package easyfastcode.library.utils;
+package easyfastcode.library.utils.other;
 
 import java.io.Closeable;
 import java.io.IOException;

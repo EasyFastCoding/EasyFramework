@@ -1,8 +1,9 @@
-package easyfastcode.library.utils;
+package easyfastcode.library.utils.other;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 
 
@@ -52,6 +53,29 @@ public class NetUtil {
             }
         }
         return type;
+    }
+
+
+    /**
+     * 打开或关闭WIFI
+     *
+     * @param mContext Context
+     * @param action   打开使用on 关闭使用off
+     */
+    public static void onWifi(Context mContext, String action) {
+        WifiManager wm = ((WifiManager) mContext
+                .getSystemService(Context.WIFI_SERVICE));
+        if (action.toLowerCase().equalsIgnoreCase("on")) {
+            if (!wm.isWifiEnabled()) {
+                wm.setWifiEnabled(true);
+            }
+        }
+
+        if (action.toLowerCase().equalsIgnoreCase("off")) {
+            if (wm.isWifiEnabled()) {
+                wm.setWifiEnabled(false);
+            }
+        }
     }
 
 }

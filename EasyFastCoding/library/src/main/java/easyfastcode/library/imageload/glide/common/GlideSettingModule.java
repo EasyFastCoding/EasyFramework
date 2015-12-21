@@ -8,7 +8,8 @@ import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.module.GlideModule;
 
-import easyfastcode.library.configurations.CommonConfig;
+import easyfastcode.library.configuration.CommonConfig;
+
 
 /**
  * 不想使用glide的默认配置，需要自己配置缓存及图片加载的质量，需要在AndroidManifest.xml中添加如下配置。
