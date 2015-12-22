@@ -1,20 +1,26 @@
 package com.coding.android.easyfastcoding.demo.draglayout;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
+import com.coding.android.easyfastcoding.view.activity.BaseActivity;
 import com.coding.android.easyfastcoding.view.fragment.MainFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import easyfastcode.library.imageload.glide.common.GlideImageLoader;
+import easyfastcode.library.manager.ui.SystemBarTintManager;
 import easyfastcode.library.widget.draglayout.DragLayout;
 
 /**
@@ -41,6 +47,8 @@ public class DragLayoutDemoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drag_demo);
         ButterKnife.bind(this);
 
+        showSystemBarColor(R.color.green_1);
+
         // 可以打开左边和右边
         dragLayout.setCanOpenView(true, true);
         // 加载左边布局
@@ -58,6 +66,32 @@ public class DragLayoutDemoActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.fl_middle_layout, new MainFragment(), R.id.fl_middle_layout + "");
         ft.commit();
+    }
+
+    /**
+     * 设置系统通知栏的颜色
+     */
+    protected void showSystemBarColor(int ColorRes) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+        }
+
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        tintManager.setStatusBarTintResource(ColorRes);//通知栏所需颜色
+    }
+
+    @TargetApi(19)
+    private void setTranslucentStatus(boolean on) {
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
     }
 
 

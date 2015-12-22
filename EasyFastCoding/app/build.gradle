@@ -28,5 +28,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     // 以下三个库是必须依赖的
     compile 'com.android.support:appcompat-v7:23.1.1'
+
     compile project(':library')
 }

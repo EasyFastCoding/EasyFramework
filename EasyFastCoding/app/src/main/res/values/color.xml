@@ -11,4 +11,6 @@
     <color name="round_progress_default_color">#e5e5e5</color>
     <!-- 圆形进度条进度 -->
     <color name="round_rate_of_progress_color">@android:color/black</color>
+
+    <color name="green_1">#10A64F</color>
 </resources>

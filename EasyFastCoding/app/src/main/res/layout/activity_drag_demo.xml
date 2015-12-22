@@ -1,9 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/bg"
-                tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
 
     <easyfastcode.library.widget.draglayout.DragLayout
         android:id="@+id/main_drag_layout"
@@ -14,21 +16,18 @@
             android:id="@+id/fl_left_layout"
             android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:layout_gravity="left">
-        </FrameLayout>
+            android:layout_gravity="left"></FrameLayout>
         <!--右侧布局-->
         <FrameLayout
             android:id="@+id/fl_right_layout"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_gravity="right">
-        </FrameLayout>
+            android:layout_gravity="right"></FrameLayout>
         <!--中间的内容-->
         <FrameLayout
             android:id="@+id/fl_middle_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
+            android:layout_height="match_parent"></FrameLayout>
 
     </easyfastcode.library.widget.draglayout.DragLayout>
 

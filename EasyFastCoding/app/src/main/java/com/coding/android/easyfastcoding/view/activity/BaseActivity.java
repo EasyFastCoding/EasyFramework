@@ -1,15 +1,21 @@
 package com.coding.android.easyfastcoding.view.activity;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.coding.android.easyfastcoding.MainActivity;
 import com.coding.android.easyfastcoding.R;
+
+import easyfastcode.library.manager.ui.SystemBarTintManager;
 
 
 /**
@@ -23,10 +29,9 @@ public class BaseActivity extends AppCompatActivity {
     private TextView mTextRight;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState  ) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ef_activity_base);
-
     }
 
     @Override
