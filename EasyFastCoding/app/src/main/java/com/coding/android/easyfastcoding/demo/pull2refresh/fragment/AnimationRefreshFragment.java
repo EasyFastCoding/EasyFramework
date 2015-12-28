@@ -16,11 +16,10 @@ import com.coding.android.easyfastcoding.datafactory.model.QuickBean;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import easyfastcode.library.widget.adapter.QuickAdapter;
-import easyfastcode.library.widget.adapter.base.BaseAdapterHelper;
+import easyfastcode.library.widget.adapter.listview.QuickAdapter;
+import easyfastcode.library.widget.adapter.listview.BaseAdapterHelper;
 import easyfastcode.library.widget.pull2refresh.base.BaseRefreshLayout;
 import easyfastcode.library.widget.pull2refresh.custom.AnimationRefreshViewHolder;
-import easyfastcode.library.widget.pull2refresh.custom.NormalRefreshViewHolder;
 
 /**
  * Created by cy on 2015/12/15.

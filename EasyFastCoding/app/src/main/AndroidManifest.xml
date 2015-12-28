@@ -15,7 +15,11 @@
         <activity
             android:name=".demo.quickadapter.QuickAdapterActivity"
             android:label="@string/title_activity_quick_adapter">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".demo.net.demo.NetWorkDemo"
@@ -29,11 +33,7 @@
         <activity
             android:name=".demo.draglayout.DragLayoutDemoActivity"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
