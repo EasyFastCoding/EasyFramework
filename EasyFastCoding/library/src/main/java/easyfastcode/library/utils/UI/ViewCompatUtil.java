@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package easyfastcode.library.utils.UI;
+package easyfastcode.library.utils.ui;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;

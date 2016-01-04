@@ -34,8 +34,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import easyfastcode.library.utils.ui.ViewCompatUtil;
 
-import easyfastcode.library.utils.UI.ViewCompatUtil;
 
 /**
  * the really implements of ViewHelper. use this class to fast set property.

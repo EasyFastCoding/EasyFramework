@@ -1,5 +1,6 @@
 package com.coding.android.easyfastcoding.demo.pull2refresh.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,7 +18,7 @@ import com.coding.android.easyfastcoding.datafactory.model.QuickBean;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import easyfastcode.library.widget.adapter.QuickAdapter;
-import easyfastcode.library.widget.adapter.BaseAdapterHelper;
+import easyfastcode.library.widget.adapter.ViewHelper;
 import easyfastcode.library.widget.pull2refresh.base.BaseRefreshLayout;
 import easyfastcode.library.widget.pull2refresh.custom.AnimationRefreshViewHolder;
 
@@ -54,16 +55,18 @@ public class AnimationRefreshFragment extends Fragment implements BaseRefreshLay
 
         refreshLayout.setRefreshViewHolder(meituanRefreshViewHolder);
 
-        lv.setAdapter(new QuickAdapter<QuickBean>(getContext(), R.layout.item_quick_adapter_test, ListDate.getQuickBean(30)) {
+        lv.setAdapter(new QuickAdapter<QuickBean>(R.layout.item_quick_adapter_test, ListDate.getQuickBean(30)) {
             @Override
             public View createNoDataView() {
                 return null;
             }
 
             @Override
-            protected void convert(BaseAdapterHelper helper, QuickBean item) {
+            protected void onBindData(Context context, int position, QuickBean item, int itemLayoutId, ViewHelper helper) {
                 helper.setText(R.id.tv_quick_adpeter, item.getInfo());
             }
+
+
         });
     }
 
