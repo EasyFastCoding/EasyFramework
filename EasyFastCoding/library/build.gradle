@@ -35,8 +35,9 @@ dependencies {
     compile "jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0"
     // 反射id
     compile 'com.jakewharton:butterknife:7.0.1'
-    // 网络请求框架
-    compile 'com.mcxiaoke.volley:library:1.0.19'
+    // Okhttp网络请求框架
+    compile 'com.zhy:okhttputils:2.0.2'
+
     // 支持Gson解析数据
     compile 'com.google.code.gson:gson:2.4'
     // 事件消息

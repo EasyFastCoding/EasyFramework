@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.coding.android.easyfastcoding.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import easyfastcode.library.utils.UI.UIUtils;
+import easyfastcode.library.utils.ui.UIUtils;
 
 /**
  * Created by 杨强彪 on 2015/12/18.

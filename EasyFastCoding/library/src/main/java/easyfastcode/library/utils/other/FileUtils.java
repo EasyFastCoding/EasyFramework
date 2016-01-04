@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import easyfastcode.library.utils.UI.StringUtils;
-import easyfastcode.library.utils.UI.UIUtils;
+import easyfastcode.library.utils.ui.StringUtils;
+import easyfastcode.library.utils.ui.UIUtils;
 
 /**
  * Created by 杨强彪 on 2015/11/10.
