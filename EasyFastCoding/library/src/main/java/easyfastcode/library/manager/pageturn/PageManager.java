@@ -14,6 +14,8 @@ public class PageManager {
         currentActivity = activity;
     }
 
+    //前进
+
     private static void toPage(Intent intent) {
         if (null == currentActivity) {
             throw new RuntimeException("先调用setCurrentActivity方法！");
@@ -27,8 +29,21 @@ public class PageManager {
         currentActivity.finish();
     }
 
+    public static void 
+
     public static void toPageKeepCurrent(Class targetClass) {
         Intent intent = new Intent(currentActivity, targetClass);
+        toPage(intent);
+    }
+
+    //回退
+    public static void goBack(Activity activity) {
+        activity.finish();
+    }
+
+    public static void goBack2SpePage(Class targeClass) {
+        Intent intent = new Intent(currentActivity, targeClass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         toPage(intent);
     }
 
