@@ -66,7 +66,10 @@ public class AnimationRefreshFragment extends Fragment implements BaseRefreshLay
                 helper.setText(R.id.tv_quick_adpeter, item.getInfo());
             }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 357454ac9cca099b93c1d5266ca0beae5652001e
         });
     }
 

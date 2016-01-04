@@ -1,0 +1,28 @@
+[
+  {
+    "name": "widget",
+    "info": "各种控件的搜集",
+    "type": 1,
+    "content": [
+      {
+        "name": "RecyclerView",
+        "info": "recycler view相关",
+        "type": 1,
+        "content": [
+          {
+            "name": "",
+            "info": "",
+            "type": 2,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "",
+    "info": "",
+    "type": 1,
+    "content": [
+    ]
+  }
+]
