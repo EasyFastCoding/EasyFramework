@@ -15,13 +15,14 @@ import android.widget.TextView;
 import com.coding.android.easyfastcoding.MainActivity;
 import com.coding.android.easyfastcoding.R;
 
+import easyfastcode.library.manager.pageturn.PageManager;
 import easyfastcode.library.manager.ui.SystemBarTintManager;
 
 
 /**
  * 带ToolBar的基础Activity
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends PageManager.AppCompatBasePage {
     private LinearLayout mParentView;
     private Toolbar mToolBar;
     private TextView mToolBarTitle;

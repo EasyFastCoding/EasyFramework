@@ -2,6 +2,8 @@ package easyfastcode.library.manager.pageturn;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by cy on 2016/1/4.
@@ -29,8 +31,6 @@ public class PageManager {
         currentActivity.finish();
     }
 
-    public static void 
-
     public static void toPageKeepCurrent(Class targetClass) {
         Intent intent = new Intent(currentActivity, targetClass);
         toPage(intent);
@@ -46,5 +46,16 @@ public class PageManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         toPage(intent);
     }
+
+
+    public static abstract class AppCompatBasePage extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            PageManager.setCurrentActivity(this);
+        }
+    }
+
 
 }
