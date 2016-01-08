@@ -82,14 +82,15 @@ public class MainActivity extends BaseActivity {
                             public void onClick(View view) {
                                 if (item.isSelected()) {
                                     item.setSelected(false);
-
                                     ((QuickRecycleViewAdapter) rv.getAdapter()).getAdapterManager().removeItem(position + 1);
                                 } else {
                                     List<DemoItemModel> childDemo = getDemoList(item.content, item.depth + 1);
-                                    item.childlength = childDemo.size();
-                                    item.setSelected(true);
+                                    if (childDemo.size() > 0) {
+                                        item.childlength = childDemo.size();
+                                        item.setSelected(true);
 
-                                    ((QuickRecycleViewAdapter) rv.getAdapter()).getAdapterManager().addItems(position + 1, childDemo);
+                                        ((QuickRecycleViewAdapter) rv.getAdapter()).getAdapterManager().addItems(position + 1, childDemo);
+                                    }
                                 }
                             }
                         });
@@ -124,30 +125,26 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private void removeAll(int position, int length) {
-        for (int i = 0; i < length; i++) {
-            demos.remove(position + i);
-        }
-    }
-
     private List<DemoItemModel> getDemoList(String jsonString, int depth) {
         List<DemoItemModel> items = new ArrayList<>();
-        try {
-            JSONArray demos = new JSONArray(jsonString);
-            for (int i = 0; i < demos.length(); i++) {
-                JSONObject demo = demos.optJSONObject(i);
-                DemoItemModel model = new DemoItemModel();
-                model.name = demo.optString("name");
-                model.info = demo.optString("info");
-                model.type = demo.optInt("type");
-                model.depth = depth;
-                if (demo.has("content"))
-                    model.content = demo.optJSONArray("content").toString();
-                items.add(model);
-            }
+        if (!TextUtils.isEmpty(jsonString)) {
+            try {
+                JSONArray demos = new JSONArray(jsonString);
+                for (int i = 0; i < demos.length(); i++) {
+                    JSONObject demo = demos.optJSONObject(i);
+                    DemoItemModel model = new DemoItemModel();
+                    model.name = demo.optString("name");
+                    model.info = demo.optString("info");
+                    model.type = demo.optInt("type");
+                    model.depth = depth;
+                    if (demo.has("content"))
+                        model.content = demo.optJSONArray("content").toString();
+                    items.add(model);
+                }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         return items;
     }
