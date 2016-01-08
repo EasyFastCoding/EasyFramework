@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by heaven7 on 2015/11/29.
  * 如果列表数据需要用到单选或者多选，Bean需要继承ISelectable接口
- *
+ * <p/>
  * 该管理类主要管理列表数据和选中状态
  */
 public abstract class AdapterManager<T extends ISelectable> {
@@ -99,6 +99,15 @@ public abstract class AdapterManager<T extends ISelectable> {
         mDatas.addAll(items);
         if (isRecyclable()) {
             notifyItemRangeInserted(preSize + getHeaderSize(), items.size());
+        } else {
+            notifyDataSetChanged();
+        }
+    }
+
+    public void addItems(int position, Collection<T> items) {
+        mDatas.addAll(position, items);
+        if (isRecyclable()) {
+            notifyItemRangeInserted(getHeaderSize() + position, items.size());
         } else {
             notifyDataSetChanged();
         }

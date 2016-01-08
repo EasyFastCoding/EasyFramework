@@ -15,11 +15,7 @@
         <activity
             android:name=".demo.quickadapter.QuickAdapterActivity"
             android:label="@string/title_activity_quick_adapter">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".demo.net.demo.NetWorkDemo"
@@ -29,6 +25,15 @@
             android:name=".demo.pull2refresh.RefreshActivity"
             android:screenOrientation="portrait">
 
+        </activity>
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".demo.draglayout.DragLayoutDemoActivity"

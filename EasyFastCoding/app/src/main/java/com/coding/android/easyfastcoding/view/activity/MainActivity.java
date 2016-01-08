@@ -15,6 +15,10 @@ import com.coding.android.easyfastcoding.view.model.DemoItemModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import easyfastcode.library.utils.UI.DensityUtils;
 import easyfastcode.library.utils.other.AssetsUtils;
+import easyfastcode.library.widget.adapter.ISelectable;
 import easyfastcode.library.widget.adapter.QuickRecycleViewAdapter;
 import easyfastcode.library.widget.adapter.ViewHelper;
 
@@ -46,16 +51,16 @@ public class MainActivity extends BaseActivity {
 
         itemMargin = DensityUtils.dp2px(this, 10);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        parseJson();
+        showDemoList();
     }
 
-    private void parseJson() {
-        String jsonString = AssetsUtils.getContent(this, "demos");
+    private void showDemoList() {
+        String jsonString = AssetsUtils.getContent(this, "demos.json");
         demos = getDemoList(jsonString, 0);
 
-        rv.setAdapter(new QuickRecycleViewAdapter<DemoItemModel>(R.layout.item_quick_adapter_test, demos) {
+        rv.setAdapter(new QuickRecycleViewAdapter<DemoItemModel>(R.layout.item_quick_adapter_test, demos, ISelectable.SELECT_MODE_MULTI) {
             @Override
-            protected void onBindData(Context context, int position, final DemoItemModel item, int itemLayoutId, ViewHelper helper) {
+            protected void onBindData(Context context, final int position, final DemoItemModel item, int itemLayoutId, ViewHelper helper) {
                 switch (itemLayoutId) {
                     case R.layout.item_recycler_parent:
                         ImageView expand = helper.getView(R.id.expand);
@@ -76,13 +81,18 @@ public class MainActivity extends BaseActivity {
                             @Override
                             public void onClick(View view) {
                                 if (item.isSelected()) {
+                                    item.setSelected(false);
 
+                                    ((QuickRecycleViewAdapter) rv.getAdapter()).getAdapterManager().removeItem(position + 1);
                                 } else {
+                                    List<DemoItemModel> childDemo = getDemoList(item.content, item.depth + 1);
+                                    item.childlength = childDemo.size();
+                                    item.setSelected(true);
 
+                                    ((QuickRecycleViewAdapter) rv.getAdapter()).getAdapterManager().addItems(position + 1, childDemo);
                                 }
                             }
                         });
-
                         break;
                     case R.layout.item_recycler_child:
                         ImageView image = helper.getView(R.id.image);
@@ -97,7 +107,6 @@ public class MainActivity extends BaseActivity {
 
                             }
                         });
-
                         break;
                 }
             }
@@ -115,15 +124,30 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    private void removeAll(int position, int length) {
+        for (int i = 0; i < length; i++) {
+            demos.remove(position + i);
+        }
+    }
 
     private List<DemoItemModel> getDemoList(String jsonString, int depth) {
         List<DemoItemModel> items = new ArrayList<>();
-        Type listType = new TypeToken<List<DemoItemModel>>() {
-        }.getType();
-        Gson gson = new Gson();
-        items = gson.fromJson(jsonString, listType);
-        for (int i = 0; i < items.size(); i++) {
-            items.get(i).depth = depth;
+        try {
+            JSONArray demos = new JSONArray(jsonString);
+            for (int i = 0; i < demos.length(); i++) {
+                JSONObject demo = demos.optJSONObject(i);
+                DemoItemModel model = new DemoItemModel();
+                model.name = demo.optString("name");
+                model.info = demo.optString("info");
+                model.type = demo.optInt("type");
+                model.depth = depth;
+                if (demo.has("content"))
+                    model.content = demo.optJSONArray("content").toString();
+                items.add(model);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
         return items;
     }

@@ -1,7 +1,5 @@
 package com.coding.android.easyfastcoding.view.model;
 
-import java.util.List;
-
 import easyfastcode.library.widget.adapter.ISelectable;
 
 /**

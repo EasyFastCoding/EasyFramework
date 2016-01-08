@@ -1,14 +1,9 @@
 package com.coding.android.easyfastcoding.view.activity;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,7 +11,6 @@ import com.coding.android.easyfastcoding.MainActivity;
 import com.coding.android.easyfastcoding.R;
 
 import easyfastcode.library.manager.pageturn.PageManager;
-import easyfastcode.library.manager.ui.SystemBarTintManager;
 
 
 /**
@@ -35,30 +29,30 @@ public class BaseActivity extends PageManager.AppCompatBasePage {
         setContentView(R.layout.ef_activity_base);
     }
 
-    @Override
-    public void setContentView(int layoutResID) {
-        if (R.layout.ef_activity_base == layoutResID) {
-            super.setContentView(layoutResID);
+//    @Override
+//    public void setContentView(int layoutResID) {
+//        if (R.layout.ef_activity_base == layoutResID) {
+//            super.setContentView(layoutResID);
+//
+//            mParentView = (LinearLayout) findViewById(R.id.base_parent_view);
+//            mToolBar = (Toolbar) findViewById(R.id.toolbar);
+//            mToolBarTitle = (TextView) findViewById(R.id.toolbar_title);
+//            mTextRight = (TextView) findViewById(R.id.tv_right);
+//            //   mTextIcon = (Button) findViewById(R.id.text_icon);
+//
+//            initToolbar(mToolBar, mToolBarTitle);
+//            return;
+//        }
+//        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+//        mParentView.addView(getLayoutInflater().inflate(layoutResID, null), params);
+//
+//    }
 
-            mParentView = (LinearLayout) findViewById(R.id.base_parent_view);
-            mToolBar = (Toolbar) findViewById(R.id.toolbar);
-            mToolBarTitle = (TextView) findViewById(R.id.toolbar_title);
-            mTextRight = (TextView) findViewById(R.id.tv_right);
-            //   mTextIcon = (Button) findViewById(R.id.text_icon);
-
-            initToolbar(mToolBar, mToolBarTitle);
-            return;
-        }
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        mParentView.addView(getLayoutInflater().inflate(layoutResID, null), params);
-
-    }
-
-    @Override
-    public void setContentView(View view) {
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        mParentView.addView(view, params);
-    }
+//    @Override
+//    public void setContentView(View view) {
+//        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+//        mParentView.addView(view, params);
+//    }
 
     private void initToolbar(Toolbar toolbar, TextView title) {
         setSupportActionBar(toolbar);
