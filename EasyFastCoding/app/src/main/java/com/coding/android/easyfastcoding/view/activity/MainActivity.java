@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity {
 
         rv.setAdapter(new QuickRecycleViewAdapter<DemoItemModel>(R.layout.item_quick_adapter_test, demos) {
             @Override
-            protected void onBindData(Context context, int position, DemoItemModel item, int itemLayoutId, ViewHelper helper) {
+            protected void onBindData(Context context, int position, final DemoItemModel item, int itemLayoutId, ViewHelper helper) {
                 switch (itemLayoutId) {
                     case R.layout.item_recycler_parent:
                         ImageView expand = helper.getView(R.id.expand);
@@ -75,7 +75,11 @@ public class MainActivity extends BaseActivity {
                         helper.getView(R.id.container).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                if (item.isSelected()) {
 
+                                } else {
+
+                                }
                             }
                         });
 
@@ -111,7 +115,6 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-}
 
     private List<DemoItemModel> getDemoList(String jsonString, int depth) {
         List<DemoItemModel> items = new ArrayList<>();
@@ -122,5 +125,6 @@ public class MainActivity extends BaseActivity {
         for (int i = 0; i < items.size(); i++) {
             items.get(i).depth = depth;
         }
+        return items;
     }
 }

@@ -8,7 +8,7 @@ import android.util.TypedValue;
  */
 public class DensityUtils {
 
-    private DensityUtils() {  
+    private DensityUtils() {
         /* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
     }

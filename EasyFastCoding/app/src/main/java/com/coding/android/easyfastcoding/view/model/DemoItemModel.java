@@ -14,6 +14,7 @@ public class DemoItemModel implements ISelectable {
     public String info;
     public int type;
     public int depth;
+    public int childlength;
     public String content;
 
     @Override
