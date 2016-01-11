@@ -1,7 +1,6 @@
 package com.coding.android.easyfastcoding.view.activity;
 
 import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,14 +11,11 @@ import android.widget.RelativeLayout;
 
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.view.model.DemoItemModel;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 

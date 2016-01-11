@@ -65,11 +65,6 @@ public class AnimationRefreshFragment extends Fragment implements BaseRefreshLay
             protected void onBindData(Context context, int position, QuickBean item, int itemLayoutId, ViewHelper helper) {
                 helper.setText(R.id.tv_quick_adpeter, item.getInfo());
             }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 357454ac9cca099b93c1d5266ca0beae5652001e
         });
     }
 

@@ -1,4 +1,4 @@
-package easyfastcode.library.utils.ui;
+package easyfastcode.library.utils.UI;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
