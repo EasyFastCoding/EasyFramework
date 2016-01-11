@@ -149,17 +149,29 @@ public abstract class AdapterManager<T extends ISelectable> {
         notifyDataSetChanged();
     }
 
-    public void removeItemsByPosition(List<Integer> positions) {
-        if (positions == null || positions.size() == 0)
+//    public void removeItemsByPosition(List<Integer> positions) {
+//        if (positions == null || positions.size() == 0)
+//            return;
+//        List<T> mDatas = this.mDatas;
+//        int pos;
+//        for (int i = 0, size = positions.size(); i < size; i++) {
+//            pos = positions.get(i);
+//            mDatas.remove(pos);
+//        }
+//        notifyDataSetChanged();
+//    }
+
+    public void removeItemsByPosition(int position, int length) {
+        if (length == 0)
             return;
         List<T> mDatas = this.mDatas;
         int pos;
-        for (int i = 0, size = positions.size(); i < size; i++) {
-            pos = positions.get(i);
-            mDatas.remove(pos);
+        for (int i = 0; i < length; i++) {
+            mDatas.remove(position);
         }
         notifyDataSetChanged();
     }
+
 
     public void replaceAllItems(List<T> items) {
         mDatas.clear();

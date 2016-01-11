@@ -76,18 +76,23 @@ public class MainActivity extends BaseActivity {
                         helper.getView(R.id.container).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                QuickRecycleViewAdapter adapter = (QuickRecycleViewAdapter) rv.getAdapter();
+
                                 if (item.isSelected()) {
                                     item.setSelected(false);
-                                    ((QuickRecycleViewAdapter) rv.getAdapter()).getAdapterManager().removeItem(position + 1);
+                                    int childLength = getAllChildLength(adapter.getAdapterManager().getItems(), position);
+                                    childLength = childLength == 0 ? item.childlength : childLength;
+                                    adapter.getAdapterManager().removeItemsByPosition(position + 1, childLength);
                                 } else {
                                     List<DemoItemModel> childDemo = getDemoList(item.content, item.depth + 1);
                                     if (childDemo.size() > 0) {
                                         item.childlength = childDemo.size();
                                         item.setSelected(true);
 
-                                        ((QuickRecycleViewAdapter) rv.getAdapter()).getAdapterManager().addItems(position + 1, childDemo);
+                                        adapter.getAdapterManager().addItems(position + 1, childDemo);
                                     }
                                 }
+                                adapter.getAdapterManager().notifyDataSetChanged();
                             }
                         });
                         break;
@@ -143,5 +148,19 @@ public class MainActivity extends BaseActivity {
             }
         }
         return items;
+    }
+
+    private int getAllChildLength(List<DemoItemModel> demos, int position) {
+        int childLength = 0;
+        int depth = demos.get(position).depth;
+        for (int i = position + 1; i < demos.size(); i++) {
+            if (demos.get(i).depth == depth) {
+                break;
+            } else if (i == demos.size() - 1) {
+                return 0;
+            }
+            childLength++;
+        }
+        return childLength;
     }
 }
