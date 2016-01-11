@@ -18,10 +18,6 @@
 
         </activity>
         <activity
-            android:name=".demo.net.demo.NetWorkDemo"
-            android:screenOrientation="portrait"
-            android:theme="@style/ActionBarTheme"></activity>
-        <activity
             android:name=".demo.pull2refresh.RefreshActivity"
             android:screenOrientation="portrait">
 

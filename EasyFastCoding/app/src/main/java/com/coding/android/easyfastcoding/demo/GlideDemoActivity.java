@@ -1,17 +1,12 @@
 package com.coding.android.easyfastcoding.demo;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.coding.android.easyfastcoding.R;
 import com.coding.android.easyfastcoding.common.configuration.CommonConfig;
-import com.coding.android.easyfastcoding.event.EventDemo;
-import com.coding.android.easyfastcoding.demo.net.demo.NetWorkDemo;
 import com.coding.android.easyfastcoding.view.activity.BaseActivity;
 
 import butterknife.Bind;
@@ -26,10 +21,6 @@ public class GlideDemoActivity extends BaseActivity {
 
     @Bind(R.id.iv)
     ImageView iv;
-    @Bind(R.id.bt_start_net_demo)
-    Button btStartNetDemo;
-    @Bind(R.id.tv_show_event_text)
-    TextView tvShowEventText;
     private String url = CommonConfig.IMAGE_URL;
 
 
@@ -38,7 +29,6 @@ public class GlideDemoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         init();
         initView();
-        initEvent();
     }
 
 
@@ -69,20 +59,9 @@ public class GlideDemoActivity extends BaseActivity {
         });
     }
 
-    public void onEventMainThread(EventDemo event) {
-        String msg = event.getMsg();
-        tvShowEventText.setText(msg);
-    }
+    
 
-    private void initEvent() {
-        btStartNetDemo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GlideDemoActivity.this, NetWorkDemo.class);
-                startActivity(intent);
-            }
-        });
-    }
+
 
     public void test(Context context, int imageId, ImageView imageView) {
         GlideImageLoader.circleImage(context, imageId, imageView);

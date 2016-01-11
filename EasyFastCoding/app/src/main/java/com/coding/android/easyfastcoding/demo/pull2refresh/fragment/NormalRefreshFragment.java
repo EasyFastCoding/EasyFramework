@@ -50,7 +50,11 @@ public class NormalRefreshFragment extends Fragment implements BaseRefreshLayout
         refreshLayout.setDelegate(this);
         refreshLayout.setRefreshViewHolder(new NormalRefreshViewHolder(getContext(), true));
 
+<<<<<<< HEAD
+        lv.setAdapter(new QuickAdapter<QuickBean>( R.layout.item_quick_adapter_test, ListDate.getQuickBean(30)) {
+=======
         lv.setAdapter(new QuickAdapter<QuickBean>(R.layout.item_quick_adapter_test, ListDate.getQuickBean(30)) {
+>>>>>>> 357454ac9cca099b93c1d5266ca0beae5652001e
             @Override
             public View createNoDataView() {
                 return null;
@@ -59,6 +63,7 @@ public class NormalRefreshFragment extends Fragment implements BaseRefreshLayout
             @Override
             protected void onBindData(Context context, int position, QuickBean item, int itemLayoutId, ViewHelper helper) {
                 helper.setText(R.id.tv_quick_adpeter, item.getInfo());
+
             }
 
         });

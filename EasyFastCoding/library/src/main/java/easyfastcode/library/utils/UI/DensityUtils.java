@@ -1,4 +1,4 @@
-package easyfastcode.library.utils.UI;
+package easyfastcode.library.utils.ui;
 
 import android.content.Context;
 import android.util.TypedValue;

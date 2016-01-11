@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.coding.android.easyfastcoding.demo.banner.BannerFragment;
+import com.coding.android.easyfastcoding.demo.net.okhttp.okHttpFragmentDemo1;
 import com.coding.android.easyfastcoding.demo.newparts.CoordinatorLayoutFragmentDemo1;
 
 import java.util.List;
@@ -31,6 +32,8 @@ public class FragmentChatAdapter extends FragmentPagerAdapter {
             return BannerFragment.initFragment();
         } else if (position == 3) {
             return new CoordinatorLayoutFragmentDemo1();
+        }else if (position == 4) {
+            return new okHttpFragmentDemo1();
         } else{
             return list_fragment.get(position);
         }

@@ -7,7 +7,6 @@
     <string name="title_activity_quick_adapter">QuickAdapterActivity</string>
 
 
-
     <string-array name="array_chat">
         <item>已读信息</item>
         <item>未读信息</item>
@@ -24,5 +23,4 @@
         <item>陌生人</item>
     </string-array>
 
->>>>>>> 添加TabLayout组件
 </resources>
